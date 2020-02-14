@@ -10,7 +10,7 @@
 
 .logo{
     width: 100px;
-    animation: rotate 5s infinite linear;
+    animation: rotate 2s infinite ease-in-out;
 }
 
 .heading{
