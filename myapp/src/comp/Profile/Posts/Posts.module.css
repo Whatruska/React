@@ -1,0 +1,39 @@
+.posts{
+    
+}
+
+.form{
+    padding-right: 20%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.textarea{
+    border-width: 0px;
+    border-radius: 20px;
+    background-color: #6C717C;
+    padding: 20px 10px;
+    font-size: 16px;
+    color: white;
+    width: 90%;
+    min-height: 50px;
+    outline: none;
+    resize: none;
+}
+
+.button{
+    outline: none;
+    font-size: 24px;
+    margin-top: 10px;
+    border-width: 0px;
+    border-radius: 20px;
+    background-color: #1C8529;
+    color: white;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.button:active{
+    background-color: #3EB04C ;
+}

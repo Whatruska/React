@@ -1,0 +1,29 @@
+.Info{
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 10px;
+}
+
+.avatar{
+    width: 150px;
+    height: 150px;
+}
+
+.data {
+    font-size: 16px;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.contacts{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
+
+.fio{
+    font-size: 24px;
+    font-style: bold;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,28 @@
+.Header{
+  background-color: #313186;
+  color: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.logo{
+    width: 100px;
+    animation: rotate 5s infinite linear;
+}
+
+.heading{
+  font-size: 40px;
+  font-style: bold;
+}
+
+@keyframes rotate {
+  from{
+    transform: rotate(0deg);
+  } 
+  to {
+    transform: rotate(180deg);
+  }
+}

@@ -1,0 +1,38 @@
+.Navbar{
+    background-color: #191E2A;
+    margin-left: 10px;
+    color: white;
+    font-size: 20px;
+}
+
+.list{
+    list-style: none;
+    display: inline;
+}
+
+.item{
+    width: 10vw;
+    margin: 5px 10px;
+}
+
+.link{
+    padding: 5px 0px;
+    display: block;
+    text-decoration: none;
+    color: white;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    border: solid 1px;
+    border-color: transparent;
+    border-radius: 20px;
+    transition: 0.3s all linear;
+}
+
+.link:hover{
+    background-color: rgba(28, 52, 97, 0.8);
+}
+
+.active{
+    background-color: rgba(28, 52, 97, 0.8);
+}
