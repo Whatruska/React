@@ -16,3 +16,8 @@
 .text{
     
 }
+
+.likes{
+    float: right;
+    margin: auto;
+}
