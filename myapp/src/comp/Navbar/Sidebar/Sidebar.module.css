@@ -1,0 +1,14 @@
+.Sidebar{
+    max-width: 20vw;
+}
+
+.heading{
+    padding: 0px 20px;
+}
+
+.friends{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

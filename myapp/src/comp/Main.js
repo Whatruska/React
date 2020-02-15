@@ -9,20 +9,16 @@ import Settings from "./Settings/Settings";
 
 const Main = (props) => {
     let state = props.state;
-
-    let users = state.users;
-    let messages = state.messages;
-    let userInfo = state.userInform;
-    let posts = state.posts;
-    let profile_header = state.profile_header;
-    let avatar = state.avatar;
+    let profilePage = state.profilePage;
+    let messagesPage = state.messagesPage;
+    let friendsInfo = state.friendInfo;
 
     return (
         <BrowserRouter>
             <div className='Main'>
-                <Navbar/>
-                <Route path="/Messages" render={() => <Messages users={users} messages={messages}/>}/>
-                <Route path="/Profile" render={() => <Profile userInfo={userInfo} posts={posts} header={profile_header} avatar={avatar}/>}/>
+                <Navbar state={friendsInfo}/>
+                <Route path="/Messages" render={() => <Messages state={messagesPage}/>}/>
+                <Route path="/Profile" render={() => <Profile state={profilePage}/>}/>
                 <Route path="/Settings" render={() => <Settings/>}/>
             </div>
         </BrowserRouter>

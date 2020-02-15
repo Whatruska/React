@@ -1,6 +1,10 @@
 import profile_header from './img/profile-header.jpeg';
 import avatar from './img/ava.jpeg';
 
+import Misha from './img/Misha.jpg';
+import Anya from './img/Anya.jpg';
+import Zeka from './img/Zeka.jpg';
+
 let userInform = {
     login : "Whatruska",
     date : "03.03.2002",
@@ -58,13 +62,33 @@ let messages = [
     }
 ];
 
+let friends = [
+    {
+        name : "Misha",
+        avatar : Misha
+    },
+    {
+        name : "Anya",
+        avatar : Anya
+    },
+    {
+        name : "Zeka",
+        avatar : Zeka
+    }
+];
+
 let state = {
-    userInform : userInform,
-    users : users,
-    posts : posts,
-    messages : messages,
-    avatar : avatar,
-    profile_header : profile_header
+    profilePage : {
+        userInform : userInform,
+        posts : posts,
+        avatar : avatar,
+        profile_header : profile_header
+    },
+    messagesPage : {
+        users : users,
+        messages : messages
+    },
+    friendInfo : friends
 }
 
 export default state;

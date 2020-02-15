@@ -4,19 +4,16 @@ import Info from './Info/Info';
 import Posts from './Posts/Posts';
 
 const Profile = (props) => {
-    let userInfo = props.userInfo;
+    let userInfo = props.state.userInform;
+    let images = {
+        avatar : props.state.avatar,
+        header : props.state.profile_header
+    };
     return(
         <div className={classes.Profile}>
-            <img src={props.header} className={classes.header} alt="Profile header"/>
-            <Info 
-                login={userInfo.login}
-                date={userInfo.date}
-                city={userInfo.city}
-                phone={userInfo.phone}
-                vk={userInfo.vk}
-                avatar={props.avatar}
-            />
-            <Posts posts={props.posts}/>
+            <img src={images.header} className={classes.header} alt="Profile header"/>
+            <Info userInfo={userInfo} images={images}/>
+            <Posts posts={props.state.posts}/>
         </div>
     );
 }
