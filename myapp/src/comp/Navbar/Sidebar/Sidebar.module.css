@@ -1,3 +1,7 @@
+a{
+    text-decoration: none;
+}
+
 .Sidebar{
     max-width: 20vw;
 }
@@ -11,4 +15,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.active{
+
 }

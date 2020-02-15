@@ -1,5 +1,6 @@
 .Friend{
     margin: 10px 0px;
+    text-decoration: none;
 }
 
 .avatar{
@@ -14,5 +15,11 @@
 }
 
 .name{
+    display: block;
+    outline: none;
+    color: white;
+}
+
+.active{
 
 }

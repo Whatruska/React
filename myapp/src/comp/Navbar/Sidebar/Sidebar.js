@@ -1,12 +1,15 @@
 import React from "react";
 import classes from './Sidebar.module.css';
 import Friend from "./Friend/Friend";
+import {NavLink} from "react-router-dom";
 
 const Sidebar = (props) => {
     let info = props.state;
     let renderedFriends = info.map((friend) => {
         return (
-            <Friend avatar={friend.avatar} name={friend.name}/>
+            <NavLink to={"../User/" + friend.name} active={classes.active}>
+                <Friend avatar={friend.avatar} name={friend.name}/>
+            </NavLink>
         );
     });
     return(
