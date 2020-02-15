@@ -1,0 +1,19 @@
+.user{
+    margin: 10px 0px;
+}
+
+.link{
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    text-align: center;
+    color: black;
+    border-radius: 20px;
+    transition: 0.3s linear all;
+    padding: 5px 5px;
+}
+
+.active, .link:hover{
+    color: white;
+    background-color: rgba(44, 55, 115, 1);
+}

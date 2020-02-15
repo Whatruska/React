@@ -1,0 +1,14 @@
+.Message{
+    display: grid;
+    grid-template-columns: 10fr 25fr;
+    margin: 10px 0px;
+}
+
+.author{
+    text-align: center;
+    font-weight: bold;
+}
+
+.text:first-letter{
+    color: red;
+}

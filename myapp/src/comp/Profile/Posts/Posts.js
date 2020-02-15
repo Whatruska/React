@@ -5,6 +5,11 @@ import Post from '../Post/Post';
 import classes from './Posts.module.css';
 
 const Posts = (props) => {
+    let renderedPosts = props.posts.map((post) => {
+        return (
+            <Post text={post.text} likes={post.likes}/>
+        );
+    });
     return (
     <div className={classes.posts}>
         <h2>Posts</h2>
@@ -13,8 +18,7 @@ const Posts = (props) => {
             <button type="submit" className={classes.button}>Submit</button>
         </form>
         <div className={classes.list}>
-            <Post text={props.posts[0].text} likes={props.posts[0].likes}/>
-            <Post text={props.posts[1].text} likes={props.posts[1].likes}/>
+            {renderedPosts}
         </div>
     </div>
     );

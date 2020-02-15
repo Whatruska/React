@@ -1,3 +1,10 @@
 .Messages{
+    display: grid;
+    grid-template-columns: 4fr 20fr;
+}
 
+.users{
+    border-right: solid black 1px;
+    padding: 10px 20px;
+    font-size: 24px;
 }

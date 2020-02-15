@@ -1,11 +1,10 @@
 import React from 'react';
 import classes from './Info.module.css';
-import avatar from '../../../img/ava.jpeg';
 
 const Info = (props) => {
     return(
         <div className={classes.Info}>
-            <img className={classes.avatar} src={avatar} alt="Ava"/>
+            <img className={classes.avatar} src={props.avatar} alt="Ava"/>
             <div className={classes.data}>
                 <span className={classes.fio}>{props.login}</span>
                 <span className={classes.date}>Birth date : {props.date}</span>

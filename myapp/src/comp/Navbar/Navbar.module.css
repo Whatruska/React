@@ -3,9 +3,36 @@
     margin-left: 10px;
     color: white;
     font-size: 20px;
+    min-width: 10vw;
 }
 
 .list{
     list-style: none;
     display: inline;
+}
+
+.item{
+    margin: 20px 10px;
+    transition: all 0.2s linear;
+    border-radius: 20px;
+}
+
+.item:hover{
+    background-color: rgba(44, 55, 115, 1);
+}
+
+.link{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    color: white;
+    padding: 10px 0px;
+}
+
+.active{
+    background-color: rgba(44, 55, 115, 1);
+    height: 100%;
+    width: 100%;
+    border-radius: 20px;
 }
