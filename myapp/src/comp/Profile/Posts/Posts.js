@@ -7,7 +7,7 @@ import classes from './Posts.module.css';
 const Posts = (props) => {
     let renderedPosts = props.posts.map((post) => {
         return (
-            <Post text={post.text} likes={post.likes}/>
+            <Post text={post.text} likes={post.likes} ava={props.avatar}/>
         );
     });
     return (
