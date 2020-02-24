@@ -1,127 +1,50 @@
-import profile_header from './img/profile-header.jpeg';
-import My_avatar from './img/ava.jpeg';
 
-import Misha_ava from './img/Misha.jpg';
-import Anya_ava from './img/Anya.jpg';
-import Zeka_ava from './img/Zeka.jpg';
-
-let posts = [
-    {
-        text :"Hi, wassup?",
-        likes : 45
-    },
-    {
-        text: "How are you?",
-        likes: 24
-    }
-];
-
-let users = [
-    {
-        id: 1,
-        name : "Misha"
-    },
-    {
-        id: 2,
-        name : "Anya"
-    },
-    {
-        id: 3,
-        name : "Evgenii"
-    },
-    {
-        id: 4,
-        name : "Azat"
-    },
-    {
-        id: 5,
-        name : "Arino"
-    }
-];
-
-let messages = [
-    {
-        text : "Hi",
-        author : "Me"
-    },
-    {
-        text : "How are you?",
-        author : "Misha"
-    },
-    {
-        text : "I`m gonna hang out",
-        author : "Me"
-    }
-];
-
-let friends = [
-    {
-        name : "Misha",
-        avatar : Misha_ava
-    },
-    {
-        name : "Anya",
-        avatar : Anya_ava
-    },
-    {
-        name : "Zeka",
-        avatar : Zeka_ava
-    }
-];
-
-let Me = {
-    login : "Whatruska",
-    date : "03.03.2002",
-    city : "Omsk",
-    phone : "+79136560423",
-    vk : "vk.com/vitdub",
-    avatar : My_avatar,
-    header: profile_header,
-    posts : posts
-};
-
-let Anya = {
-    login : "Anya",
-    date : "04.05.2001",
-    city : "Omsk",
-    phone : "+79146578354",
-    vk : "vk.com/annya",
-    avatar : Anya_ava,
-    header : profile_header,
-    posts : posts
-};
-
-let Zeka = {
-    login : "Zeka",
-    date : "01.03.2001",
-    city : "Omsk",
-    phone : "+79146578354",
-    vk : "vk.com/zeka",
-    avatar : Zeka_ava,
-    header : profile_header,
-    posts : posts
-};
-
-let Misha = {
-    login : "Misha",
-    date : "28.31.2001",
-    city : "Omsk",
-    phone : "+79146578354",
-    vk : "vk.com/Misha",
-    avatar : Misha_ava,
-    header : profile_header,
-    posts : posts
-};
+import render from "./render";
+import {users, Anya, Zeka, Misha, Me, friends} from "./data/users";
+import dialogs from "./data/dialogs";
+import posts from "./data/posts";
 
 let state = {
     messagesPage : {
-        users : users,
-        messages : messages
+        users: users,
+        messages : dialogs
     },
     friendInfo : friends,
     userPages : [
         Me, Anya, Zeka, Misha
-    ]
+    ],
+    msg : ""
+};
+
+let addPost = (post) => {
+    posts[0].p.push(
+        {
+            text : post,
+            likes: 0
+        }
+    );
+    render(state);
+    state.msg = "";
+};
+
+let append = (ch) => {
+    state.msg = state.msg + ch;
+    render(state);
+};
+
+let addMsg = (text, id) => {
+    for (let i = 0; i < dialogs.length; i++){
+        if (dialogs[i].userId === id){
+            let dialog = dialogs[i].dialog;
+            dialog.push({
+                text : text,
+                author : "Me"
+            });
+        }
+    }
+    render(state);
 }
 
+
+export {addPost, append, addMsg};
 export default state;
