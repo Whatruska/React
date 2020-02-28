@@ -16,7 +16,7 @@ const Profile = (props) => {
         <div className={classes.Profile}>
             <img src={state.header} className={classes.header} alt="Profile header"/>
             <Info userInfo={userInfo} avatar={state.avatar}/>
-            <Posts posts={state.posts} avatar={state.avatar} addPost={props.addPost} append={props.append} msg={props.msg}/>
+            <Posts posts={state.posts} avatar={state.avatar} addPost={props.addPost}/>
         </div>
     );
 }

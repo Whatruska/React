@@ -1,7 +1,7 @@
 import React from "react";
 import classes from "./Dialog.module.css";
 import Message from "./Message/Message";
-import store from "../../../redux_store";
+import Context from "../../Context/Context";
 import {addMsgActionCreator} from "../../../reducers/messageReducer";
 
 const Dialog = (props) => {
@@ -13,7 +13,7 @@ const Dialog = (props) => {
 
     let ref = React.createRef();
 
-    let add = () => {
+    let add = (store) => {
         let text = ref.current.value;
         if (text !== ""){
             store.dispatch(
@@ -24,17 +24,23 @@ const Dialog = (props) => {
     };
 
     return(
-        <div className={classes.Dialog}>
-            {renderedMessages}
-            <form className={classes.form}>
-                <textarea className={classes.textarea} ref={ref}></textarea>
-                <button className={classes.button} onClick={(e) => {
-                    e.preventDefault();
-                    add();
-                }}>Submit</button>
-            </form>
-        </div>
+        <Context.Consumer>
+            {
+                (store) => (
+                    <div className={classes.Dialog}>
+                        {renderedMessages}
+                        <form className={classes.form}>
+                            <textarea className={classes.textarea} ref={ref}></textarea>
+                            <button className={classes.button} onClick={(e) => {
+                                e.preventDefault();
+                                add(store);
+                            }}>Submit</button>
+                        </form>
+                    </div>
+                )
+            }
+        </Context.Consumer>
     );
-}
+};
 
 export default Dialog;

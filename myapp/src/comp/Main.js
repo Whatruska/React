@@ -16,7 +16,7 @@ const Main = (props) => {
 
     let renderedUsers = userPages.map((user) => {
         return (
-            <Route path={"/User/" + user.login} render={() => <Profile state={user} addPost={props.addPost} append={props.append} msg={state.msg}/>}/>
+            <Route path={"/User/" + user.login} render={() => <Profile state={user}/>}/>
         );
     });
 
