@@ -1,8 +1,8 @@
 import React from "react";
 import classes from "./Dialog.module.css";
 import Message from "./Message/Message";
-import {addMsgActionCreator} from "../../../store";
-import store from "../../../store";
+import store from "../../../redux_store";
+import {addMsgActionCreator} from "../../../reducers/messageReducer";
 
 const Dialog = (props) => {
     let renderedMessages = props.messages.map((message) => {
@@ -15,9 +15,12 @@ const Dialog = (props) => {
 
     let add = () => {
         let text = ref.current.value;
-        store.dispatch(
-            addMsgActionCreator(text, props.id)
-        );
+        if (text !== ""){
+            store.dispatch(
+                addMsgActionCreator(text, props.id)
+            );
+        }
+        ref.current.value = "";
     };
 
     return(

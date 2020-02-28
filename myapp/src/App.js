@@ -7,7 +7,7 @@ const App = (props) => {
   return (
     <div className="App">
         <Header/>
-        <Main state={props.state} addPost={props.addPost} append={props.append}/>
+        <Main state={props.state}/>
     </div>
   );
 }

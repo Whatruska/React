@@ -40,7 +40,7 @@ let Anya = {
 let Zeka = {
     id : 4,
     login : "Zeka",
-    date : "01.03.2001",
+    date : "25.04.1996",
     city : "Omsk",
     phone : "+79146578354",
     vk : "vk.com/zeka",

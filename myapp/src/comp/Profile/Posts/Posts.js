@@ -1,10 +1,9 @@
 import React from 'react';
-
 import Post from '../Post/Post';
 import {Route} from "react-router-dom";
 import classes from './Posts.module.css';
-import store from "../../../store";
-import {addPostActionCreator, appendActionCreator} from "../../../store";
+import store from "../../../redux_store";
+import {addPostActionCreator} from "../../../reducers/postReducer";
 
 const Posts = (props) => {
     let renderedPosts = props.posts.map((post) => {
@@ -25,25 +24,12 @@ const Posts = (props) => {
         ref.current.value = "";
     };
 
-    let append = (e) => {
-        let ch = e.key;
-        if (e.keyCode >= 65 && e.keyCode <= 90){
-            e.preventDefault();
-            store.dispatch(
-                appendActionCreator(ch)
-            );
-            ref.current.value = props.msg + ch;
-        }
-    };
-
     return (
     <div className={classes.posts}>
         <h2>Posts</h2>
         <Route path={"/User/Whatruska"} exact>
             <form className={classes.form}>
-                <textarea className={classes.textarea} ref={ref} onKeyDown={(e) => {
-                    append(e);
-                }}></textarea>
+                <textarea className={classes.textarea} ref={ref}></textarea>
                 <button className={classes.button} onClick={(e) => {
                     e.preventDefault();
                     add();

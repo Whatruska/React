@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import {addPost, append} from "./state";
+import store from "./redux_store";
 
-let render = (state) => {
-    ReactDOM.render(<App state={state} addPost={addPost} append={append}/>, document.getElementById('root'));
+let render = (state = store.getState()) => {
+    ReactDOM.render(<App state={state}/>, document.getElementById('root'));
 };
 
 export default render;

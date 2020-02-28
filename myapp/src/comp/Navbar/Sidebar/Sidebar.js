@@ -4,7 +4,7 @@ import Friend from "./Friend/Friend";
 import {NavLink} from "react-router-dom";
 
 const Sidebar = (props) => {
-    let info = props.state;
+    let info = props.state.friends;
     let renderedFriends = info.map((friend) => {
         return (
             <NavLink to={"../User/" + friend.name} active={classes.active}>

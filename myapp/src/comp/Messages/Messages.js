@@ -8,7 +8,6 @@ import {Route} from "react-router-dom";
 const Messages = (props) => {
     let state = props.state;
     console.log(props);
-    debugger;
     let renderedUsers = state.users.map((user) => {
         return (
             <User id={user.id} name={user.name}/>
