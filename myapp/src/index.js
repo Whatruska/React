@@ -3,9 +3,6 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 
 import render from "./render";
-import store from "./redux_store";
-
-store.subscribe(render);
 
 render();
 

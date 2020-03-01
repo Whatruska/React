@@ -6,7 +6,7 @@ import DialogContainer from "./Dialog/DialogContainer";
 
 const Messages = (props) => {
     let state = props.state;
-    console.log(props);
+    console.log(state.users);
     let renderedUsers = state.users.map((user) => {
         return (
             <User id={user.id} name={user.name}/>
