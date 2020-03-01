@@ -1,9 +1,8 @@
 import React from "react";
-
 import classes from './Messages.module.css';
 import User from "./User/User";
-import Dialog from "./Dialog/Dialog";
 import {Route} from "react-router-dom";
+import DialogContainer from "./Dialog/DialogContainer";
 
 const Messages = (props) => {
     let state = props.state;
@@ -15,7 +14,7 @@ const Messages = (props) => {
     });
     let renderedDialogs = state.messages.map((d) => {
         return(
-            <Route path={'/Messages/' + d.userId} exact render={() => <Dialog id={d.userId} messages={d.dialog}/>}/>
+            <Route path={'/Messages/' + d.userId} exact render={() => <DialogContainer id={d.userId}/>}/>
         );
     });
     return (

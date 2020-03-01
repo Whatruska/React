@@ -17,6 +17,7 @@ let addMsg = (text, id) => {
                 text : text,
                 author : "Me"
             });
+            break;
         }
     }
 };

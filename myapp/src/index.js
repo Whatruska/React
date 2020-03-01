@@ -2,12 +2,12 @@
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 
-import store from "./redux_store";
 import render from "./render";
-
-render();
+import store from "./redux_store";
 
 store.subscribe(render);
+
+render();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

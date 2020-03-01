@@ -2,17 +2,17 @@ import React from 'react';
 import Header from './comp/Header/Header';
 import Main from './comp/Main';
 import './App.css';
-import Context from "./comp/Context/Context";
+import {Provider} from "react-redux";
 
 const App = (props) => {
-    let state = props.store.getState();
+  let state = props.store.getState();
   return (
-      <Context.Provider value={props.store}>
+      <Provider store={props.store}>
           <div className="App">
               <Header/>
               <Main state={state}/>
           </div>
-      </Context.Provider>
+      </Provider>
   );
 };
 export default App;
