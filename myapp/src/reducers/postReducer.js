@@ -1,29 +1,27 @@
 import {Anya, Zeka, Misha, Me} from "../data/users";
-import posts from "../data/posts";
+import getUserPagesCopy from "../copiers/userPagesCopier";
 
 const ADD_POST = 'ADD-POST';
 
 let initialState = [
-    Anya, Zeka, Misha, Me
+    Me, Zeka, Misha, Anya
 ];
 
-let addPost = (state, post) => {
-    posts[0].p.push(
-        {
-            text : post,
-            likes: 0
-        }
-    );
-};
-
 const postReducer = (state = initialState, action) => {
+
+    let stateCopy = getUserPagesCopy(state);
+    debugger;
+
     switch (action.type) {
         case ADD_POST : {
-            addPost(state, action.post);
-            return state;
+            stateCopy[0].posts.push({
+                text : action.post,
+                likes: 0
+            });
+            return stateCopy;
         }
         default :{
-            return state;
+            return stateCopy;
         }
     }
 };
