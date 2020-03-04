@@ -5,7 +5,7 @@ import {BrowserRouter, Route} from "react-router-dom";
 import Navbar from './Navbar/Navbar';
 import Messages from "./Messages/Messages";
 import Profile from "./Profile/Profile";
-import Settings from "./Settings/Settings";
+import UserListContainer from "./UserList/UserListContainer";
 
 const Main = (props) => {
     let state = props.state;
@@ -25,11 +25,11 @@ const Main = (props) => {
             <div className='Main'>
                 <Navbar state={friendsInfo}/>
                 <Route path="/Messages" render={() => <Messages state={messagesPage}/>}/>
-                <Route path="/Settings" render={() => <Settings/>}/>
+                <Route path="/UserList" render={() => <UserListContainer/>}/>
                 {renderedUsers}
             </div>
         </BrowserRouter>
     );
-}
+};
 
 export default Main;

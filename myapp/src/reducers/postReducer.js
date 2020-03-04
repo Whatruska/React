@@ -10,7 +10,6 @@ let initialState = [
 const postReducer = (state = initialState, action) => {
 
     let stateCopy = getUserPagesCopy(state);
-    debugger;
 
     switch (action.type) {
         case ADD_POST : {

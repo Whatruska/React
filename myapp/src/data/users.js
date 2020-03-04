@@ -34,7 +34,8 @@ let Anya = {
     vk : "vk.com/annya",
     avatar : Anya_ava,
     header : profile_header,
-    posts : getPostsByID(2)
+    posts : getPostsByID(2),
+    followed : false
 };
 
 let Zeka = {
@@ -46,7 +47,8 @@ let Zeka = {
     vk : "vk.com/zeka",
     avatar : Zeka_ava,
     header : profile_header,
-    posts : getPostsByID(4)
+    posts : getPostsByID(4),
+    followed : true
 };
 
 let Misha = {
@@ -58,7 +60,8 @@ let Misha = {
     vk : "vk.com/Misha",
     avatar : Misha_ava,
     header : profile_header,
-    posts : getPostsByID(3)
+    posts : getPostsByID(3),
+    followed : false
 };
 
 let friends = [
