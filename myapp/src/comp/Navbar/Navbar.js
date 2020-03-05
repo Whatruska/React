@@ -14,7 +14,7 @@ const Navbar = (props) => {
                     <NavLink className={classes.link} to="../Messages" activeClassName={classes.active}>Messages</NavLink>
                 </li>
                 <li className={classes.item}>
-                    <NavLink className={classes.link} to="../UserList" activeClassName={classes.active}>Users</NavLink>
+                    <NavLink className={classes.link} to="../UserListAPIComponent" activeClassName={classes.active}>Users</NavLink>
                 </li>
             </ul>
             <Sidebar state={props.state}/>

@@ -25,7 +25,7 @@ const Main = (props) => {
             <div className='Main'>
                 <Navbar state={friendsInfo}/>
                 <Route path="/Messages" render={() => <Messages state={messagesPage}/>}/>
-                <Route path="/UserList" render={() => <UserListContainer/>}/>
+                <Route path="/UserListAPIComponent" render={() => <UserListContainer/>}/>
                 {renderedUsers}
             </div>
         </BrowserRouter>
