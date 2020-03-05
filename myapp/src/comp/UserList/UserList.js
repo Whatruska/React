@@ -6,27 +6,53 @@ import avatar from "../../img/user.png";
 import header from "../../img/profile-header.jpeg";
 
 class UserList extends React.Component{
-    formRequest = (basicUrl = this.basicUrl, pageCount = 1, pageSize = 10) => {
+    inc = "INC";
+    dec = "DEC";
+
+    formRequest = (basicUrl = this.basicUrl, pageCount = 1, pageSize = 6) => {
         return basicUrl + "?" + "page=" + pageCount + "&count=" + pageSize;
     };
 
     componentDidMount() {
-        debugger;
-        this.refresh();
+        this.refresh()
     }
 
     basicUrl = "https://social-network.samuraijs.com/api/1.0/users";
 
-    refresh = () => {
+    refresh = (mode) => {
         axios
             .get(this.formRequest(this.basicUrl,this.props.pageCount, this.props.pageSize))
             .then((response) => {
                 let userItems = response.data.items.map((reps) => {
                     return this.formUserFromResponse(reps)
                 });
-                this.props.setPageCount(this.props.pageCount + 1);
+                if (mode){
+                    this.changePageCount(mode);
+                }
                 this.props.setUsers(userItems);
             });
+    };
+
+    changePageCount = (mode) => {
+        let pageCount = this.props.pageCount;
+        let set = this.props.setPageCount;
+        switch (mode) {
+            case this.inc : {
+                set(pageCount + 1);
+                break;
+            }
+
+            case this.dec : {
+                if (pageCount > 1){
+                    set(pageCount - 1);
+                }
+                break;
+            }
+
+            default : {
+                break;
+            }
+        }
     };
 
     divideItemsToColumns = (listItems) => {
@@ -85,7 +111,17 @@ class UserList extends React.Component{
                 <div className={classes.wrapper}>
                     {renderedUsers}
                 </div>
-                <button onClick={this.refresh} className={classes.btn}>Get More</button>
+                <div className={classes.btns_wrapper}>
+                    <button onClick={() => {
+                        this.refresh(this.dec);
+                    }} className={classes.btn}>{"<<<"}</button>
+                    <div className={classes.page_counter}>
+                        Page number : {this.props.pageCount}
+                    </div>
+                    <button onClick={() => {
+                        this.refresh(this.inc);
+                    }} className={classes.btn}>{">>>"}</button>
+                </div>
             </div>
         );
     }
