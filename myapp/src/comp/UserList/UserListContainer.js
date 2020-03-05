@@ -3,7 +3,7 @@ import {
     followActionCreator, setPageCountActionCreator,
     setPageSize,
     setPageSizeActionCreator,
-    setUsersActionCreator
+    setUsersActionCreator, toggleFetchActionCreator
 } from "../../reducers/userListReducer";
 import React from "react";
 import * as axios from "axios";
@@ -12,6 +12,7 @@ import UserListItem from "./UserListItem/UserListItem";
 import avatar from "../../img/user.png";
 import header from "../../img/profile-header.jpeg";
 import UserList from "./List/UserList";
+import preloader from "../../preloader.svg";
 
 class UserListAPIComponent extends React.Component{
     inc = "INC";
@@ -28,6 +29,7 @@ class UserListAPIComponent extends React.Component{
     basicUrl = "https://social-network.samuraijs.com/api/1.0/users";
 
     refresh = (mode) => {
+        this.props.toggleFetching();
         axios
             .get(this.formRequest(this.basicUrl,this.props.pageCount, this.props.pageSize))
             .then((response) => {
@@ -38,6 +40,7 @@ class UserListAPIComponent extends React.Component{
                     this.changePageCount(mode);
                 }
                 this.props.setUsers(userItems);
+                this.props.toggleFetching();
             });
     };
 
@@ -115,7 +118,15 @@ class UserListAPIComponent extends React.Component{
     render() {
         let renderedUsers = this.getRenderedUserItems(this.props.users, this.props.follow);
         return(
-            <UserList renderedUsers={renderedUsers} refresh={this.refresh} inc={this.inc} dec={this.dec} pageCount={this.props.pageCount}/>
+            <UserList
+                renderedUsers={renderedUsers}
+                refresh={this.refresh}
+                inc={this.inc}
+                dec={this.dec}
+                pageCount={this.props.pageCount}
+                isFetching={this.props.isFetching}
+                preloader={preloader}
+            />
         );
     }
 }
@@ -124,7 +135,8 @@ let mapStateToProps = (state) => {
     return({
         users : state.userList.users,
         pageSize : state.userList.pageSize,
-        pageCount : state.userList.pageCount
+        pageCount : state.userList.pageCount,
+        isFetching : state.userList.isFetching
     });
 };
 
@@ -141,6 +153,9 @@ let mapDispatchToProps = (dispatch) => {
         },
         setPageCount : (count) => {
             dispatch(setPageCountActionCreator(count))
+        },
+        toggleFetching : () => {
+            dispatch(toggleFetchActionCreator());
         }
     });
 };
@@ -153,7 +168,9 @@ let mergeProps = (stateProps, dispatchProps, props) => {
         follow : dispatchProps.follow,
         setUsers : dispatchProps.setUsers,
         setPageCount : dispatchProps.setPageCount,
-        setPageSize : dispatchProps.setPageSize
+        setPageSize : dispatchProps.setPageSize,
+        isFetching : stateProps.isFetching,
+        toggleFetching : dispatchProps.toggleFetching
     });
 };
 

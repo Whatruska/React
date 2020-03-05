@@ -5,13 +5,15 @@ let FOLLOW_TYPE = "FOLLOW";
 let SET_USERS = "USERS";
 let SET_PAGE_COUNT = "SET_PAGE_COUNT";
 let SET_PAGE_SIZE = "SET_PAGE_SIZE";
+let TOGGLE_FETCH = "TOGGLE_FETCH";
 
 let initialState = {
     users : [
         Anya, Misha, Zeka
     ],
     pageSize : 6,
-    pageCount : 1
+    pageCount : 1,
+    isFetching : false
 };
 
 let getUserByLogin = (users, login) => {
@@ -44,6 +46,11 @@ let userListReducer = (state = initialState, action) => {
         case SET_PAGE_SIZE : {
 
             break;
+        }
+
+        case TOGGLE_FETCH : {
+            stateCopy.isFetching = !stateCopy.isFetching;
+            break
         }
 
         default : {
@@ -82,6 +89,12 @@ let setPageSizeActionCreator = (size) => {
     });
 };
 
-export {followActionCreator, setUsersActionCreator, setPageCountActionCreator, setPageSizeActionCreator};
+let toggleFetchActionCreator = () => {
+    return({
+        type : TOGGLE_FETCH
+    });
+};
+
+export {followActionCreator, setUsersActionCreator, setPageCountActionCreator, setPageSizeActionCreator, toggleFetchActionCreator};
 
 export default userListReducer;
