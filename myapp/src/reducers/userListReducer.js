@@ -3,11 +3,15 @@ import userListCopier from "../copiers/userListCopier";
 
 let FOLLOW_TYPE = "FOLLOW";
 let SET_USERS = "USERS";
+let SET_PAGE_COUNT = "SET_PAGE_COUNT";
+let SET_PAGE_SIZE = "SET_PAGE_SIZE";
 
 let initialState = {
     users : [
         Anya, Misha, Zeka
-    ]
+    ],
+    pageSize : 6,
+    pageCount : 1
 };
 
 let getUserByLogin = (users, login) => {
@@ -26,8 +30,19 @@ let userListReducer = (state = initialState, action) => {
             user.followed = action.follow;
             break;
         }
+
         case SET_USERS : {
             stateCopy.users = action.users;
+            break;
+        }
+
+        case SET_PAGE_COUNT : {
+            stateCopy.pageCount = action.count;
+            break;
+        }
+
+        case SET_PAGE_SIZE : {
+
             break;
         }
 
@@ -53,6 +68,20 @@ let setUsersActionCreator = (users) => {
     })
 };
 
-export {followActionCreator, setUsersActionCreator};
+let setPageCountActionCreator = (count) => {
+    return({
+        type : SET_PAGE_COUNT,
+        count : count
+    });
+};
+
+let setPageSizeActionCreator = (size) => {
+    return({
+        type : SET_PAGE_SIZE,
+        size : size
+    });
+};
+
+export {followActionCreator, setUsersActionCreator, setPageCountActionCreator, setPageSizeActionCreator};
 
 export default userListReducer;

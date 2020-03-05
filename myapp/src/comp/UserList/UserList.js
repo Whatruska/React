@@ -2,28 +2,64 @@ import React from "react";
 import UserListItem from "./UserListItem/UserListItem";
 import classes from "./UserList.module.css";
 import * as axios from "axios";
-import avatar from "../../img/ava.jpeg";
+import avatar from "../../img/user.png";
 import header from "../../img/profile-header.jpeg";
 
 class UserList extends React.Component{
+    formRequest = (basicUrl = this.basicUrl, pageCount = 1, pageSize = 10) => {
+        return basicUrl + "?" + "page=" + pageCount + "&count=" + pageSize;
+    };
 
     componentDidMount() {
         debugger;
+        this.refresh();
+    }
+
+    basicUrl = "https://social-network.samuraijs.com/api/1.0/users";
+
+    refresh = () => {
         axios
-            .get("https://social-network.samuraijs.com/api/1.0/users")
+            .get(this.formRequest(this.basicUrl,this.props.pageCount, this.props.pageSize))
             .then((response) => {
                 let userItems = response.data.items.map((reps) => {
                     return this.formUserFromResponse(reps)
                 });
+                this.props.setPageCount(this.props.pageCount + 1);
                 this.props.setUsers(userItems);
             });
-    }
+    };
+
+    divideItemsToColumns = (listItems) => {
+        let result = [];
+        let m = [];
+        while (listItems.length > 0){
+            if (m.length === 3){
+                result.push(
+                    <div className={classes.column}>
+                        {m}
+                    </div>
+                );
+                m = []
+            } else {
+                m.push(listItems.pop());
+            }
+        }
+        if (m.length > 0){
+            result.push(
+                <div className={classes.column}>
+                    {m}
+                </div>
+            );
+        }
+        return result;
+    };
 
     getRenderedUserItems = (userItems, followCallback) => {
         if (userItems){
-            return userItems.map((item) => {
+            let listItems =  userItems.map((item) => {
                 return <UserListItem user={item} follow={followCallback}/>
             });
+            return this.divideItemsToColumns(listItems);
         }
     };
 
@@ -46,7 +82,10 @@ class UserList extends React.Component{
         let renderedUsers = this.getRenderedUserItems(this.props.users, this.props.follow);
         return(
             <div className={classes.UserList}>
-                {renderedUsers}
+                <div className={classes.wrapper}>
+                    {renderedUsers}
+                </div>
+                <button onClick={this.refresh} className={classes.btn}>Get More</button>
             </div>
         );
     }
