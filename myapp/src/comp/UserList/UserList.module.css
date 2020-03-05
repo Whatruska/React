@@ -3,4 +3,6 @@
     flex-direction: column;
     justify-content: space-around;
     margin: 10px 30px;
+    overflow: scroll;
+    width: 100%;
 }

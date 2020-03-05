@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import UserList from "./UserList";
-import {followActionCreator} from "../../reducers/userListReducer";
+import {followActionCreator, setUsersActionCreator} from "../../reducers/userListReducer";
 
 let mapStateToProps = (state) => {
     return({
@@ -12,6 +12,9 @@ let mapDispatchToProps = (dispatch) => {
     return({
         follow : (bool, login) => {
             dispatch(followActionCreator(bool, login));
+        },
+        setUsers : (users) => {
+            dispatch(setUsersActionCreator(users))
         }
     });
 };
@@ -19,7 +22,8 @@ let mapDispatchToProps = (dispatch) => {
 let mergeProps = (stateProps, dispatchProps, props) => {
     return ({
         users : stateProps.users,
-        follow : dispatchProps.follow
+        follow : dispatchProps.follow,
+        setUsers : dispatchProps.setUsers
     });
 };
 

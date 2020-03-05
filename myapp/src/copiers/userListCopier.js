@@ -1,5 +1,4 @@
 let userListCopier = (state) => {
-    debugger;
     let stateCopy = {...state};
     stateCopy.users = [...state.users];
     for (let i = 0; i < stateCopy.length; i++){

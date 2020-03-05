@@ -44,11 +44,14 @@
 .info{
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
+    justify-content: center;
     color: black;
     cursor: auto;
 }
 
 .login{
     cursor: pointer;
+    text-decoration: none;
+    font-size: 32px;
+    color: #313186;
 }
