@@ -1,11 +1,12 @@
 import React from "react";
 import classes from "./UserList.module.css";
+import Preloader from "../../Preloader/Preloader";
 
 let UserList = (props) => {
     return(
         <div className={classes.UserList}>
             {props.isFetching
-                ? <img src={props.preloader} className={classes.preloader} alt={"Preloader"}/>
+                ? <Preloader/>
             : <div className={classes.wrapper}>
                 {props.renderedUsers}
               </div>

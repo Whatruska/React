@@ -8,7 +8,6 @@ let UserListItem = (props) => {
     let followText = user.followed ? "Unfollow" : "Follow";
 
     let folFunc = () => {
-        debugger;
         props.follow(!user.followed, user.login);
     };
       return (

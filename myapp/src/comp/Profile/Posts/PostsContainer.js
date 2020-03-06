@@ -3,7 +3,6 @@ import Posts from "./Posts";
 import {addPostActionCreator} from "../../../reducers/postReducer";
 
 let mapStateToProps = (state) => {
-    debugger;
     let userPage = state.userPages;
     return({
         users : userPage
@@ -17,7 +16,6 @@ let mapDispatchToProps = (dispatch) => {
 };
 
 let mergeProps = (stateProps, dispatchProps, props) => {
-    debugger;
     let login = props.login;
     let user = getUserByLogin(stateProps.users, login);
     return({

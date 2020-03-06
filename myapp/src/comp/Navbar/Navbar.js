@@ -8,7 +8,7 @@ const Navbar = (props) => {
         <div className={classes.Navbar}>
             <ul className={classes.list}>
                 <li className={classes.item}>
-                    <NavLink className={classes.link} to="../User/Whatruska" activeClassName={classes.active}>Profile</NavLink>
+                    <NavLink className={classes.link} to="../Profile" activeClassName={classes.active}>Profile</NavLink>
                 </li>
                 <li className={classes.item}>
                     <NavLink className={classes.link} to="../Messages" activeClassName={classes.active}>Messages</NavLink>

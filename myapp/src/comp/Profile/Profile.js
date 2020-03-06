@@ -11,12 +11,12 @@ const Profile = (props) => {
         city : state.city,
         phone : state.phone,
         vk : state.vk
-    }
+    };
     return(
         <div className={classes.Profile}>
             <img src={state.header} className={classes.header} alt="Profile header"/>
             <Info userInfo={userInfo} avatar={state.avatar}/>
-            <PostsContainer login={state.login}/>
+            {state.posts ? <PostsContainer login={state.login}/> : <></>}
         </div>
     );
 }

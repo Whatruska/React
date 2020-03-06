@@ -12,7 +12,6 @@ import UserListItem from "./UserListItem/UserListItem";
 import avatar from "../../img/user.png";
 import header from "../../img/profile-header.jpeg";
 import UserList from "./List/UserList";
-import preloader from "../../preloader.svg";
 
 class UserListAPIComponent extends React.Component{
     inc = "INC";
@@ -125,7 +124,6 @@ class UserListAPIComponent extends React.Component{
                 dec={this.dec}
                 pageCount={this.props.pageCount}
                 isFetching={this.props.isFetching}
-                preloader={preloader}
             />
         );
     }

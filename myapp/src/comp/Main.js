@@ -6,6 +6,7 @@ import Navbar from './Navbar/Navbar';
 import Messages from "./Messages/Messages";
 import Profile from "./Profile/Profile";
 import UserListContainer from "./UserList/UserListContainer";
+import ProfileContainer from "./Profile/ProfileContainer";
 
 const Main = (props) => {
     let state = props.state;
@@ -14,11 +15,7 @@ const Main = (props) => {
     let friendsInfo = state.friendInfo;
     let userPages = state.userPages;
 
-    let renderedUsers = userPages.map((user) => {
-        return (
-            <Route path={"/User/" + user.login} render={() => <Profile state={user}/>}/>
-        );
-    });
+    let myProfile = <Route path={"/Profile"} exact render={() => <Profile state={userPages[0]}/>}/>;
 
     return (
         <BrowserRouter>
@@ -26,7 +23,10 @@ const Main = (props) => {
                 <Navbar state={friendsInfo}/>
                 <Route path="/Messages" render={() => <Messages state={messagesPage}/>}/>
                 <Route path="/UserListAPIComponent" render={() => <UserListContainer/>}/>
-                {renderedUsers}
+                {myProfile}
+                <Route path="/User">
+                    <ProfileContainer/>
+                </Route>
             </div>
         </BrowserRouter>
     );
