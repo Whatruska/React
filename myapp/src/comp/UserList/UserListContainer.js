@@ -3,7 +3,7 @@ import {
     followActionCreator, setPageCountActionCreator,
     setPageSize,
     setPageSizeActionCreator,
-    setUsersActionCreator, toggleFetchActionCreator
+    setUsersActionCreator, toggleFetchActionCreator, unfollowActionCreator
 } from "../../reducers/userListReducer";
 import React from "react";
 import * as axios from "axios";
@@ -140,8 +140,11 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return({
-        follow : (bool, login) => {
-            dispatch(followActionCreator(bool, login));
+        follow : (id) => {
+            dispatch(followActionCreator(id));
+        },
+        unfollow : (id) => {
+            dispatch(unfollowActionCreator(id));
         },
         setUsers : (users) => {
             dispatch(setUsersActionCreator(users))
@@ -164,6 +167,7 @@ let mergeProps = (stateProps, dispatchProps, props) => {
         pageCount : stateProps.pageCount,
         pageSize : stateProps.pageSize,
         follow : dispatchProps.follow,
+        unfollow : dispatchProps.unfollow,
         setUsers : dispatchProps.setUsers,
         setPageCount : dispatchProps.setPageCount,
         setPageSize : dispatchProps.setPageSize,

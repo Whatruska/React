@@ -1,11 +1,15 @@
 import {Anya, Misha, Zeka} from "../data/users";
 import userListCopier from "../copiers/userListCopier";
+import axios from "axios";
 
 let FOLLOW_TYPE = "FOLLOW";
+let UNFOLLOW_TYPE = "UNFOLLOW";
 let SET_USERS = "USERS";
 let SET_PAGE_COUNT = "SET_PAGE_COUNT";
 let SET_PAGE_SIZE = "SET_PAGE_SIZE";
 let TOGGLE_FETCH = "TOGGLE_FETCH";
+
+let followUrl = "https://social-network.samuraijs.com/api/1.0";
 
 let initialState = {
     users : [
@@ -28,9 +32,25 @@ let userListReducer = (state = initialState, action) => {
     let stateCopy = userListCopier(state);
     switch (action.type) {
         case FOLLOW_TYPE : {
-            let user = getUserByLogin(stateCopy.users, action.login);
-            user.followed = action.follow;
+            stateCopy.isFetching = true;
+            axios
+                .post(followUrl + "/follow?userId=" + action.id)
+                .then(() => {
+                    stateCopy.isFetching = false;
+                    return stateCopy;
+                });
             break;
+        }
+
+        case UNFOLLOW_TYPE : {
+            stateCopy.isFetching = true;
+            axios
+                .delete(followUrl + "/follow?userId=" + action.id)
+                .then(() => {
+                    stateCopy.isFetching = false;
+                    return stateCopy;
+                });
+            break
         }
 
         case SET_USERS : {
@@ -60,11 +80,17 @@ let userListReducer = (state = initialState, action) => {
     return stateCopy;
 };
 
-let followActionCreator = (follow, login) => {
+let followActionCreator = (id) => {
     return ({
         type : FOLLOW_TYPE,
-        follow : follow,
-        login : login
+        id : id
+    });
+};
+
+let unfollowActionCreator = (id) => {
+    return ({
+        type : UNFOLLOW_TYPE,
+        id : id
     });
 };
 
@@ -95,6 +121,6 @@ let toggleFetchActionCreator = () => {
     });
 };
 
-export {followActionCreator, setUsersActionCreator, setPageCountActionCreator, setPageSizeActionCreator, toggleFetchActionCreator};
+export {followActionCreator, setUsersActionCreator, setPageCountActionCreator, setPageSizeActionCreator, toggleFetchActionCreator, unfollowActionCreator};
 
 export default userListReducer;
