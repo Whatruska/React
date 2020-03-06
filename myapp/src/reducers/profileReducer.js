@@ -12,7 +12,7 @@ let profileReducer = (state = initialState, action) => {
     let stateCopy = profilePageCopier(state);
     switch (action.type) {
         case FETCH_TYPE : {
-            stateCopy.isFetching = !initialState.isFetching;
+            stateCopy.isFetching = !stateCopy.isFetching;
             break;
         }
 

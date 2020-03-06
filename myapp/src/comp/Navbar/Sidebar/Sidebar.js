@@ -7,7 +7,7 @@ const Sidebar = (props) => {
     let info = props.state.friends;
     let renderedFriends = info.map((friend) => {
         return (
-            <NavLink to={"../User/" + friend.name} active={classes.active}>
+            <NavLink to={"../Friend/" + friend.name} active={classes.active}>
                 <Friend avatar={friend.avatar} name={friend.name}/>
             </NavLink>
         );

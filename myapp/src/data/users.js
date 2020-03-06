@@ -13,6 +13,15 @@ let getPostsByID = (id) => {
     }
 };
 
+let getUserByLogin = (login) => {
+    let users = [Me,Anya,Misha,Zeka];
+    for (let i = 0; i < users.length; i++){
+        if (users[i].login === login){
+            return users[i];
+        }
+    }
+};
+
 let Me = {
     id : 1,
     login : "Whatruska",
@@ -102,4 +111,4 @@ let users = [
     }
 ];
 
-export {users, friends, Me, Misha, Zeka, Anya};
+export {users, friends, Me, Misha, Zeka, Anya, getUserByLogin};

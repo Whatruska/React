@@ -22,7 +22,7 @@ let UserListItem = (props) => {
                   }>{followText}</button>
               </div>
               <div className={classes.info}>
-                  <NavLink className={classes.login} to={"../User/" + user.login}>{user.login}</NavLink>
+                  <NavLink className={classes.login} to={"../User/" + user.id}>{user.login}</NavLink>
                   <h4>City : {user.city}</h4>
                   <h4>Birthday : {user.date}</h4>
               </div>

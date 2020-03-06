@@ -7,10 +7,11 @@ import Preloader from "../Preloader/Preloader";
 import Profile from "./Profile";
 import My_avatar from "../../img/ava.jpeg";
 import profile_header from "../../img/profile-header.jpeg";
+import classes from "./ProfileContainer.module.css";
+import {getUserByLogin} from "../../data/users";
 
 class ProfileContainer extends React.Component{
     formProfileFromResponse = (response) => {
-        debugger;
         return {
             id : response.userId,
             login : response.fullName,
@@ -23,10 +24,9 @@ class ProfileContainer extends React.Component{
         };
     };
 
-    refresh = () => {
-        this.props.toggleFetch();
+    request = (userId) => {
         axios
-            .get("https://social-network.samuraijs.com/api/1.0/profile/2")
+            .get("https://social-network.samuraijs.com/api/1.0/profile/" + userId)
             .then((response) => {
                 let profile = this.formProfileFromResponse(response.data);
                 this.props.setProfile(profile);
@@ -34,16 +34,32 @@ class ProfileContainer extends React.Component{
             });
     };
 
+    refresh = () => {
+        let props = this.props;
+        let split = props.location.pathname.split(/\//);
+        let userId = split[2];
+        if (!props.isFetching){
+            props.toggleFetch();
+        }
+        let m = userId.match(new RegExp('\\d+'));
+        if (m != null){
+            this.request(userId)
+        } else {
+            props.setProfile(getUserByLogin(userId));
+            props.toggleFetch();
+        }
+    };
+
     componentDidMount() {
         this.refresh();
     }
 
     render() {
-        debugger;
+        let isFetching = this.props.isFetching;
         return(
-            <>
-                {this.props.isFetching ? <Preloader/> : <Profile state={this.props.profile}/>}
-            </>
+            <div className={classes.Container}>
+                {isFetching ? <Preloader/> : <Profile state={this.props.profile}/>}
+            </div>
         );
     }
 }
@@ -66,7 +82,8 @@ let mapDispatchToProps = (dispatch) => {
         }
     });
 };
-//let routeComp = withRouter(ProfileContainer);
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileContainer);
+let routeComp = withRouter(ProfileContainer);
+
+export default connect(mapStateToProps, mapDispatchToProps)(routeComp);
 
 

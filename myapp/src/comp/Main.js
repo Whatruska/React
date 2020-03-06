@@ -16,6 +16,12 @@ const Main = (props) => {
     let userPages = state.userPages;
 
     let myProfile = <Route path={"/Profile"} exact render={() => <Profile state={userPages[0]}/>}/>;
+    let rendoredFriends = userPages.map((user) => {
+        if (user.login !== "Whatruska"){
+            return <Route path={"/Friend/" + user.login} exact render = {() => <Profile state={user}/>}/>
+        }
+        return undefined
+    });
 
     return (
         <BrowserRouter>
@@ -24,6 +30,7 @@ const Main = (props) => {
                 <Route path="/Messages" render={() => <Messages state={messagesPage}/>}/>
                 <Route path="/UserListAPIComponent" render={() => <UserListContainer/>}/>
                 {myProfile}
+                {rendoredFriends}
                 <Route path="/User">
                     <ProfileContainer/>
                 </Route>
