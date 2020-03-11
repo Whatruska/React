@@ -1,42 +1,62 @@
 import React from 'react';
 import './Main.css';
 import {BrowserRouter, Route} from "react-router-dom";
-
 import Navbar from './Navbar/Navbar';
 import Messages from "./Messages/Messages";
 import Profile from "./Profile/Profile";
 import UserListContainer from "./UserList/UserListContainer";
 import ProfileContainer from "./Profile/ProfileContainer";
+import LoginContainer from "./Login/LoginContainer/LoginContainer";
+import {connect} from "react-redux";
+import Greetings from "./Greetings/Greeting";
 
-const Main = (props) => {
-    let state = props.state;
+class Main extends React.Component{
 
-    let messagesPage = state.messagesPage;
-    let friendsInfo = state.friendInfo;
-    let userPages = state.userPages;
+    myProfile = <Route path={"/Profile"} exact render={() => <Profile state={this.props.userPages[0]}/>}/>;
 
-    let myProfile = <Route path={"/Profile"} exact render={() => <Profile state={userPages[0]}/>}/>;
-    let rendoredFriends = userPages.map((user) => {
+    renderedFriends = this.props.userPages.map((user) => {
         if (user.login !== "Whatruska"){
             return <Route path={"/Friend/" + user.login} exact render = {() => <Profile state={user}/>}/>
         }
         return undefined
     });
 
-    return (
-        <BrowserRouter>
-            <div className='Main'>
-                <Navbar state={friendsInfo}/>
-                <Route path="/Messages" render={() => <Messages state={messagesPage}/>}/>
-                <Route path="/UserListAPIComponent" render={() => <UserListContainer/>}/>
-                {myProfile}
-                {rendoredFriends}
-                <Route path="/User">
-                    <ProfileContainer/>
-                </Route>
-            </div>
-        </BrowserRouter>
-    );
+    render() {
+        if (this.props.loginData.isLogged){
+            return(
+                <BrowserRouter>
+                    <div className='Main'>
+                        <Navbar state={this.props.friendInfo}/>
+                        <Route path="/Messages" render={() => <Messages state={this.props.messagesPage}/>}/>
+                        <Route path="/UserListAPIComponent" render={() => <UserListContainer/>}/>
+                        {this.myProfile}
+                        {this.renderedFriends}
+                        <Route path="/User">
+                            <ProfileContainer/>
+                        </Route>
+                        <Route path="/" exact render={() => <Greetings/>}/>
+                    </div>
+                </BrowserRouter>
+            );
+        } else {
+            return (
+                <BrowserRouter>
+                    <div className='Main'>
+                        <Route path="/" exact render={() => <LoginContainer/>}/>
+                    </div>
+                </BrowserRouter>
+            );
+        }
+    }
+}
+
+let mapStateToProps = (state) => {
+    return({
+        messagesPage : state.messagesPage,
+        friendInfo : state.friendInfo,
+        userPages : state.userPages,
+        loginData : state.loginData
+    });
 };
 
-export default Main;
+export default connect(mapStateToProps)(Main);

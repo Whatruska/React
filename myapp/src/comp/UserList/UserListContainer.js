@@ -8,10 +8,10 @@ import {
 import React from "react";
 import * as axios from "axios";
 import classes from "./List/UserList.module.css";
-import UserListItem from "./UserListItem/UserListItem";
 import avatar from "../../img/user.png";
 import header from "../../img/profile-header.jpeg";
 import UserList from "./List/UserList";
+import UserListItemContainer from "./UserListItem/UserListItemContainer";
 
 class UserListAPIComponent extends React.Component{
     inc = "INC";
@@ -90,10 +90,10 @@ class UserListAPIComponent extends React.Component{
         return result;
     };
 
-    getRenderedUserItems = (userItems, followCallback) => {
+    getRenderedUserItems = (userItems) => {
         if (userItems){
             let listItems =  userItems.map((item) => {
-                return <UserListItem user={item} follow={followCallback}/>
+                return <UserListItemContainer user={item}/>
             });
             return this.divideItemsToColumns(listItems);
         }
@@ -115,7 +115,7 @@ class UserListAPIComponent extends React.Component{
     };
 
     render() {
-        let renderedUsers = this.getRenderedUserItems(this.props.users, this.props.follow);
+        let renderedUsers = this.getRenderedUserItems(this.props.users);
         return(
             <UserList
                 renderedUsers={renderedUsers}

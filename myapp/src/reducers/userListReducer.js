@@ -1,6 +1,5 @@
 import {Anya, Misha, Zeka} from "../data/users";
 import userListCopier from "../copiers/userListCopier";
-import axios from "axios";
 
 let FOLLOW_TYPE = "FOLLOW";
 let UNFOLLOW_TYPE = "UNFOLLOW";
@@ -20,6 +19,14 @@ let initialState = {
     isFetching : false
 };
 
+let getUserByID = (id, users) => {
+    for (let i = 0; i < users.length; i++){
+        if (users[i].id === id){
+            return users[i];
+        }
+    }
+};
+
 let getUserByLogin = (users, login) => {
     for (let i = 0; i < users.length; i++){
         if (login === users[i].login){
@@ -32,25 +39,15 @@ let userListReducer = (state = initialState, action) => {
     let stateCopy = userListCopier(state);
     switch (action.type) {
         case FOLLOW_TYPE : {
-            stateCopy.isFetching = true;
-            axios
-                .post(followUrl + "/follow?userId=" + action.id)
-                .then(() => {
-                    stateCopy.isFetching = false;
-                    return stateCopy;
-                });
+            let user = getUserByID(action.id, stateCopy.users);
+            user.followed = true;
             break;
         }
 
         case UNFOLLOW_TYPE : {
-            stateCopy.isFetching = true;
-            axios
-                .delete(followUrl + "/follow?userId=" + action.id)
-                .then(() => {
-                    stateCopy.isFetching = false;
-                    return stateCopy;
-                });
-            break
+            let user = getUserByID(action.id, stateCopy.users);
+            user.followed = false;
+            break;
         }
 
         case SET_USERS : {

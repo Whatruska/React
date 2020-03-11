@@ -29,6 +29,11 @@
     background-color: #1C8529;
 }
 
+.follow:disabled{
+    background-color: #5f9e63;
+    cursor: not-allowed;
+}
+
 .follow:active{
     background-color: #3EB04C;
 }

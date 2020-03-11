@@ -10,11 +10,12 @@ let UserListItem = (props) => {
     let folFunc = () => {
         props.follow(user.id);
     };
+
       return (
           <div className={classes.UserListItem}>
               <div className={classes.meta}>
                   <img className={classes.avatar} src={user.avatar} alt="Avatar"/>
-                  <button type="submit" className={classes.btn + " " + followClass} disabled={true} onClick={
+                  <button type="submit" className={classes.btn + " " + followClass} onClick={
                       (e) => {
                           e.preventDefault();
                           folFunc();

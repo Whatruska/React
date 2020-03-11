@@ -4,13 +4,15 @@ import postReducer from "./reducers/postReducer";
 import sidebarReducer from "./reducers/sidebarReducer";
 import userListReducer from "./reducers/userListReducer";
 import profileReducer from "./reducers/profileReducer";
+import loginReducer from "./reducers/loginReducer";
 
 let reducers = combineReducers({
     messagesPage: messageReducer,
     userPages: postReducer,
     friendInfo: sidebarReducer,
     userList: userListReducer,
-    profilePage: profileReducer
+    profilePage: profileReducer,
+    loginData : loginReducer
 });
 
 let store = createStore(reducers);
