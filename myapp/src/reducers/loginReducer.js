@@ -1,14 +1,18 @@
+import loginDataCopier from "../copiers/loginDataCopier";
+
 let SET_USER_ID = "LOGIN_ID";
 let SET_EMAIL = "SET_EMAIL";
 let LOG_IN = "LOG_IN";
 let LOG_OUT = "LOG_OUT";
+let SET_ERROR_MSG = "ERROR";
 let FETCH = "FETCH";
 
 let initialState = {
     userId : 1,
     email : "test@email",
     isLogged : false,
-    isFetching : false
+    isFetching : false,
+    errorMessage : undefined
 };
 
 let loginReducer = (state = initialState, action) => {
@@ -36,6 +40,11 @@ let loginReducer = (state = initialState, action) => {
 
         case FETCH : {
             stateCopy.isFetching = !stateCopy.isFetching;
+            break;
+        }
+
+        case SET_ERROR_MSG : {
+            stateCopy.errorMessage = [action.errorMessage];
             break;
         }
 
@@ -78,6 +87,13 @@ let toggleFetchActionCreator = () => {
     });
 };
 
-export {setUserIdActionCreator, setEmailActionCreator, loginActionCreator, logoutActionCreator, toggleFetchActionCreator}
+let setErrorMessageActionCreator = (error) => {
+    return({
+        type : SET_ERROR_MSG,
+        errorMessage : error
+    });
+};
+
+export {setUserIdActionCreator, setEmailActionCreator, loginActionCreator, logoutActionCreator, toggleFetchActionCreator, setErrorMessageActionCreator}
 
 export default loginReducer;

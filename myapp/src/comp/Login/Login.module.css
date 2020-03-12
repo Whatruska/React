@@ -41,3 +41,11 @@
     background-color: #4242b6;
     cursor: pointer;
 }
+
+.errorMessage{
+    color: red;
+}
+
+.errorMessagesWrapper{
+
+}
