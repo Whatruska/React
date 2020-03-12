@@ -15,6 +15,7 @@ let Login = (props) => {
                     e.preventDefault();
                     let email = emailLink.current.value;
                     let password = passLink.current.value;
+                    debugger;
                     props.login(email, password);
                 }}>Login</button>
             </form>
