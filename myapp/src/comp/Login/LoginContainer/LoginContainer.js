@@ -16,7 +16,6 @@ class LoginContainer extends React.Component{
     baseUrl = "https://social-network.samuraijs.com/api/1.0/auth/login";
 
     login = (email, pass) => {
-        debugger;
         this.props.toggleFetching();
         axios
             .post(this.baseUrl + "?email=" + email + "&password=" + pass)
@@ -35,7 +34,6 @@ class LoginContainer extends React.Component{
     };
 
     render() {
-        debugger;
         if (!this.props.isLogged){
             if (this.props.isFetching){
                 return(

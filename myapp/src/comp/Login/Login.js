@@ -6,7 +6,6 @@ let passLink = React.createRef();
 
 class Login extends React.Component {
     renderedMessages = (messages) => {
-        debugger;
         if (messages){
             return messages.map((item) => {
                 return(

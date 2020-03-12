@@ -2,7 +2,7 @@
   background-color: #313186;
   color: white;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
   font-size: 24px;
   margin-bottom: 10px;
@@ -13,9 +13,39 @@
     animation: rotate 2s infinite ease-in-out;
 }
 
+.logo_wrapper{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .heading{
   font-size: 40px;
-  font-style: bold;
+}
+
+.login_block{
+  margin-right: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.logout{
+  outline: none;
+  background-color: #ff5f57;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  border-width: 0px;
+  border-radius: 20px;
+}
+
+.logout:hover{
+  background-color: #ff938c;
+}
+
+.email{
+  margin-bottom: 5px;
 }
 
 @keyframes rotate {

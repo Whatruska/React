@@ -64,7 +64,7 @@ let setUserIdActionCreator = (id) => {
 
 let setEmailActionCreator = (email) => {
     return({
-        type : SET_USER_ID,
+        type : SET_EMAIL,
         email : email
     });
 };
