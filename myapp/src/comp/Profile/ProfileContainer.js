@@ -8,7 +8,7 @@ import My_avatar from "../../img/ava.jpeg";
 import profile_header from "../../img/profile-header.jpeg";
 import classes from "./ProfileContainer.module.css";
 import {getUserByLogin} from "../../data/users";
-import {getProfileRequest} from "../../DAL/Profile/profileAPI";
+import profileAPI from "../../DAL/Profile/profileAPI";
 
 class ProfileContainer extends React.Component{
     formProfileFromResponse = (response) => {
@@ -25,8 +25,8 @@ class ProfileContainer extends React.Component{
     };
 
     request = (userId) => {
-            getProfileRequest(userId).then((response) => {
-                let profile = this.formProfileFromResponse(response.data);
+            profileAPI.getProfileRequest(userId).then((data) => {
+                let profile = this.formProfileFromResponse(data);
                 this.props.setProfile(profile);
                 this.props.toggleFetch();
             });

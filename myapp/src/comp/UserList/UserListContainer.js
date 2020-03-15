@@ -10,7 +10,7 @@ import avatar from "../../img/user.png";
 import header from "../../img/profile-header.jpeg";
 import UserList from "./List/UserList";
 import UserListItemContainer from "./UserListItem/UserListItemContainer";
-import {getPageRequest} from "../../DAL/UserList/userListAPI";
+import userListAPI from "../../DAL/UserList/userListAPI";
 
 class UserListAPIComponent extends React.Component{
     inc = "INC";
@@ -26,8 +26,8 @@ class UserListAPIComponent extends React.Component{
         if (mode){
             pageCount = this.changePageCount(mode);
         }
-        getPageRequest(pageCount, this.props.pageSize).then((response) => {
-            let userItems = response.data.items.map((reps) => {
+        userListAPI.getPageRequest(pageCount, this.props.pageSize).then((data) => {
+            let userItems = data.items.map((reps) => {
                 return this.formUserFromResponse(reps)
             });
             this.props.setUsers(userItems);

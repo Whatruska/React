@@ -2,15 +2,13 @@ import React from "react";
 import {connect} from "react-redux";
 import {logoutActionCreator, setUserDataActionCreator} from "../../../reducers/loginReducer";
 import Header from "../Header";
-import {getAuthRequest, getLogoutRequest} from "../../../DAL/Auth/authAPI";
+import authAPI from "../../../DAL/Auth/authAPI";
 
 class HeaderContainer extends React.Component{
 
     componentDidMount() {
-        getAuthRequest().then(
-            (response) => {
-                debugger;
-                let data = response.data;
+        authAPI.getAuthRequest().then(
+            (data) => {
                 if (data.resultCode === 0){
                     this.props.setUserData(data.data);
                 }
@@ -19,7 +17,7 @@ class HeaderContainer extends React.Component{
     }
 
     logout = () => {
-       getLogoutRequest().then((response) => {
+        authAPI.getLogoutRequest().then((data) => {
                 this.props.logout();
        });
     };

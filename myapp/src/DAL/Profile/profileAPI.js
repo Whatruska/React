@@ -1,14 +1,15 @@
-import axios from "axios";
-import {BASE_URL} from "../api";
+import api from "../api";
 
-const PROFILE_URL = BASE_URL + "profile/";
+const PROFILE_URL = "profile/";
 
 let formProfileUrl = (userId) => {
     return PROFILE_URL + userId
 };
 
-const getProfileRequest = (userId) => {
-    return axios.get(formProfileUrl(userId));
+const profileAPI = {
+    getProfileRequest : (userId) => {
+        return api.get(formProfileUrl(userId)).then((response) => response.data);
+    }
 };
 
-export {getProfileRequest}
+export default profileAPI;

@@ -1,18 +1,20 @@
-import {BASE_URL, POST_CONFIG} from "../../api";
-import axios from "axios";
+import api from "../../api";
 
-const FOLLOW_URL = BASE_URL + "follow/";
+const FOLLOW_URL = "follow/";
 
 let formLoginRequest = (id) => {
     return FOLLOW_URL + id;
 };
 
-const getFollowRequest = (id) => {
-    return axios.post(formLoginRequest(id),{}, POST_CONFIG)
+const followAPI = {
+    getFollowRequest : (id) => {
+        return api.post(formLoginRequest(id),{}).then((response) => response.data);
+    },
+
+    getUnfollowRequest : (id) => {
+        return api.delete(formLoginRequest(id)).then((response) => response.data);
+    }
 };
 
-const getUnfollowRequest = (id) => {
-    return axios.delete(formLoginRequest(id), POST_CONFIG)
-};
+export default followAPI;
 
-export {getFollowRequest, getUnfollowRequest}

@@ -1,24 +1,25 @@
-import {BASE_URL, DEFAULT_CONFIG, POST_CONFIG} from "../api";
-import axios from "axios";
+import api from "../api";
 
-const AUTH_URL = BASE_URL + "auth/me";
-const LOGIN_URL = BASE_URL + "auth/login";
-
-const getAuthRequest = () => {
-    return axios.get(AUTH_URL, DEFAULT_CONFIG);
-};
+const AUTH_URL = "auth/me";
+const LOGIN_URL = "auth/login";
 
 let formLoginUrl = (email, pass) => {
     return LOGIN_URL + "?email=" + email + "&password=" + pass
 };
 
-const getLoginRequest = (email, pass) => {
-    return axios.post(formLoginUrl(email, pass), {}, POST_CONFIG)
+const authAPI = {
+     getAuthRequest : () => {
+        return api.get(AUTH_URL).then((response) => response.data);
+    },
+
+     getLoginRequest : (email, pass) => {
+        return api.post(formLoginUrl(email, pass)).then((response) => response.data);
+    },
+
+     getLogoutRequest : () => {
+        return api.delete(LOGIN_URL).then((response) => response.data);
+    }
 };
 
-const getLogoutRequest = () => {
-    return axios.delete(LOGIN_URL, DEFAULT_CONFIG);
-};
-
-export {getAuthRequest, getLoginRequest, getLogoutRequest}
+export default authAPI;
 

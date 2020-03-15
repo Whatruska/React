@@ -2,17 +2,16 @@ import React from "react";
 import {connect} from "react-redux";
 import {followActionCreator, unfollowActionCreator, toggleFetchActionCreator} from "../../../reducers/userListReducer";
 import UserListItem from "./UserListItem";
-import {getFollowRequest, getUnfollowRequest} from "../../../DAL/UserList/Follow/followAPI";
+import followAPI from "../../../DAL/UserList/Follow/followAPI";
 
 class UserListItemContainer extends React.Component{
 
     follow = (id) => {
-        debugger;
         this.props.toggleFetching();
-        getFollowRequest(id).then(
-            (response) => {
+        followAPI.getFollowRequest(id).then(
+            (data) => {
                 debugger;
-                if (response.data.resultCode === 0){
+                if (data.resultCode === 0){
                     this.props.follow(id);
                 }
                 this.props.toggleFetching();
@@ -22,10 +21,10 @@ class UserListItemContainer extends React.Component{
 
     unfollow = (id) => {
         this.props.toggleFetching();
-        getUnfollowRequest(id).then(
-            (response) => {
+        followAPI.getUnfollowRequest(id).then(
+            (data) => {
                 debugger;
-                if (response.data.resultCode === 0){
+                if (data.resultCode === 0){
                     this.props.unfollow(id);
                 }
                 this.props.toggleFetching();

@@ -10,16 +10,13 @@ import Login from "../Login";
 import Preloader from "../../Preloader/Preloader";
 import {toggleFetchingActionCreator} from "../../../reducers/profileReducer";
 import classes from "./LoginContainer.module.css";
-import {getLoginRequest} from "../../../DAL/Auth/authAPI";
+import authAPI from "../../../DAL/Auth/authAPI";
 
 class LoginContainer extends React.Component{
 
     login = (email, pass) => {
-        debugger;
         this.props.toggleFetching();
-        getLoginRequest(email,pass).then((response) => {
-            debugger;
-            let data = response.data;
+        authAPI.getLoginRequest(email,pass).then((data) => {
             if (data.resultCode === 0){
                 this.props.setEmail(email);
                 this.props.setUserId(data.data.userId);
