@@ -11,7 +11,6 @@ import {connect} from "react-redux";
 import Greetings from "./Greetings/Greeting";
 
 class Main extends React.Component{
-
     myProfile = <Route path={"/Profile"} exact render={() => <Profile state={this.props.userPages[0]}/>}/>;
 
     renderedFriends = this.props.userPages.map((user) => {
@@ -31,7 +30,7 @@ class Main extends React.Component{
                         <Route path="/UserListAPIComponent" render={() => <UserListContainer/>}/>
                         {this.myProfile}
                         {this.renderedFriends}
-                        <Route path="/User">
+                        <Route path="/User/:userId">
                             <ProfileContainer/>
                         </Route>
                         <Route path="/" exact render={() => <Greetings/>}/>
@@ -54,7 +53,7 @@ let mapStateToProps = (state) => {
     return({
         messagesPage : state.messagesPage,
         friendInfo : state.friendInfo,
-        userPages : state.userPages,
+        userPages : state.userPages.users,
         loginData : state.loginData
     });
 };

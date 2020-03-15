@@ -6,7 +6,8 @@ import {getUserByLogin} from "../../../data/users";
 let mapStateToProps = (state) => {
     let userPage = state.userPages;
     return({
-        users : userPage
+        users : userPage.users,
+        count : userPage.myPostsCount
     });
 };
 

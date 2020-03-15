@@ -3,7 +3,6 @@ import classes from "./UserList.module.css";
 import Preloader from "../../Preloader/Preloader";
 
 let UserList = (props) => {
-    debugger;
     return(
         <div className={classes.UserList}>
             {props.isFetching

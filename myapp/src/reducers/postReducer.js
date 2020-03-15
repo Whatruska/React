@@ -3,9 +3,10 @@ import getUserPagesCopy from "../copiers/userPagesCopier";
 
 const ADD_POST = 'ADD-POST';
 
-let initialState = [
-    Me, Zeka, Misha, Anya
-];
+let initialState = {
+    users :[Me, Zeka, Misha, Anya],
+    myPostsCount : 2
+};
 
 const postReducer = (state = initialState, action) => {
 
@@ -13,10 +14,11 @@ const postReducer = (state = initialState, action) => {
 
     switch (action.type) {
         case ADD_POST : {
-            stateCopy[0].posts.push({
+            stateCopy.users[0].posts.push({
                 text : action.post,
                 likes: 0
             });
+            stateCopy.myPostsCount++;
             return stateCopy;
         }
         default :{

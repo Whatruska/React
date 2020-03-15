@@ -1,9 +1,25 @@
 import React from "react";
 import {connect} from "react-redux";
-import {logoutActionCreator} from "../../../reducers/loginReducer";
+import {loginActionCreator, logoutActionCreator, setUserDataActionCreator} from "../../../reducers/loginReducer";
 import Header from "../Header";
+import axios from "axios";
 
 class HeaderContainer extends React.Component{
+
+    componentDidMount() {
+        axios
+            .get("https://social-network.samuraijs.com/api/1.0/auth/me", {
+                withCredentials : true
+            })
+            .then(
+                (response) => {
+                    let data = response.data;
+                    if (data.resultCode === 0){
+                        this.props.setUserData(data.data);
+                    }
+                }
+            );
+    }
 
     render() {
         if (this.props.isLogged){
@@ -25,7 +41,10 @@ let mapDispatchToProps = (dispatch) => {
     return({
        logout : () => {
            dispatch(logoutActionCreator());
-       }
+       },
+        setUserData : (data) => {
+           dispatch(setUserDataActionCreator(data));
+        }
     });
 };
 

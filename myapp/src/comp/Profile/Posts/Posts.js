@@ -11,6 +11,7 @@ const Posts = (props) => {
 
     let ref = React.createRef();
 
+    debugger;
     return (
     <div className={classes.posts}>
         <h2>Posts</h2>

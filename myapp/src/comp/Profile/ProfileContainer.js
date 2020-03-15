@@ -36,8 +36,8 @@ class ProfileContainer extends React.Component{
 
     refresh = () => {
         let props = this.props;
-        let split = props.location.pathname.split(/\//);
-        let userId = split[2];
+        debugger;
+        let userId = props.match.params.userId;
         if (!props.isFetching){
             props.toggleFetch();
         }

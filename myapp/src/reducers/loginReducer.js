@@ -6,6 +6,7 @@ let LOG_IN = "LOG_IN";
 let LOG_OUT = "LOG_OUT";
 let SET_ERROR_MSG = "ERROR";
 let FETCH = "FETCH";
+let SET_USER_DATA = "SET_DATA";
 
 let initialState = {
     userId : 1,
@@ -45,6 +46,14 @@ let loginReducer = (state = initialState, action) => {
 
         case SET_ERROR_MSG : {
             stateCopy.errorMessage = [action.errorMessage];
+            break;
+        }
+
+        case SET_USER_DATA : {
+            let data = action.data;
+            stateCopy.isLogged = true;
+            stateCopy.email = data.email;
+            stateCopy.userId = data.id;
             break;
         }
 
@@ -94,6 +103,15 @@ let setErrorMessageActionCreator = (error) => {
     });
 };
 
-export {setUserIdActionCreator, setEmailActionCreator, loginActionCreator, logoutActionCreator, toggleFetchActionCreator, setErrorMessageActionCreator}
+let setUserDataActionCreator = (data) => {
+    return({
+        type : SET_USER_DATA,
+        data : data
+    })
+};
+
+
+
+export {setUserIdActionCreator, setEmailActionCreator, loginActionCreator, logoutActionCreator, toggleFetchActionCreator, setErrorMessageActionCreator, setUserDataActionCreator}
 
 export default loginReducer;
