@@ -9,32 +9,27 @@ import {
 import Login from "../Login";
 import Preloader from "../../Preloader/Preloader";
 import {toggleFetchingActionCreator} from "../../../reducers/profileReducer";
-import axios from "axios";
 import classes from "./LoginContainer.module.css";
+import {getLoginRequest} from "../../../DAL/Auth/authAPI";
 
 class LoginContainer extends React.Component{
-    baseUrl = "https://social-network.samuraijs.com/api/1.0/auth/login";
 
     login = (email, pass) => {
-        this.props.toggleFetching();
         debugger;
-        axios
-            .post(this.baseUrl + "?email=" + email + "&password=" + pass, {}, {
-                withCredentials : true
-            })
-            .then((response) => {
-                debugger;
-                let data = response.data;
-                if (data.resultCode === 0){
-                    this.props.setEmail(email);
-                    this.props.setUserId(data.data.userId);
-                    this.props.login();
-                    this.props.toggleFetching();
-                } else {
-                    this.props.error("Неверно введены email/пароль");
-                    this.props.toggleFetching();
-                }
-            });
+        this.props.toggleFetching();
+        getLoginRequest(email,pass).then((response) => {
+            debugger;
+            let data = response.data;
+            if (data.resultCode === 0){
+                this.props.setEmail(email);
+                this.props.setUserId(data.data.userId);
+                this.props.login();
+                this.props.toggleFetching();
+            } else {
+                this.props.error("Неверно введены email/пароль");
+                this.props.toggleFetching();
+            }
+        });
     };
 
     render() {

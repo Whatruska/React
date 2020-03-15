@@ -25,14 +25,6 @@ let getUserByID = (id, users) => {
     }
 };
 
-let getUserByLogin = (users, login) => {
-    for (let i = 0; i < users.length; i++){
-        if (login === users[i].login){
-            return users[i];
-        }
-    }
-};
-
 let userListReducer = (state = initialState, action) => {
     let stateCopy = userListCopier(state);
     switch (action.type) {

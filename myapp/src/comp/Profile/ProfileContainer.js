@@ -1,7 +1,6 @@
 import React from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
-import axios from "axios";
 import {setProfileActionCreator, toggleFetchingActionCreator} from "../../reducers/profileReducer";
 import Preloader from "../Preloader/Preloader";
 import Profile from "./Profile";
@@ -9,6 +8,7 @@ import My_avatar from "../../img/ava.jpeg";
 import profile_header from "../../img/profile-header.jpeg";
 import classes from "./ProfileContainer.module.css";
 import {getUserByLogin} from "../../data/users";
+import {getProfileRequest} from "../../DAL/Profile/profileAPI";
 
 class ProfileContainer extends React.Component{
     formProfileFromResponse = (response) => {
@@ -25,9 +25,7 @@ class ProfileContainer extends React.Component{
     };
 
     request = (userId) => {
-        axios
-            .get("https://social-network.samuraijs.com/api/1.0/profile/" + userId)
-            .then((response) => {
+            getProfileRequest(userId).then((response) => {
                 let profile = this.formProfileFromResponse(response.data);
                 this.props.setProfile(profile);
                 this.props.toggleFetch();

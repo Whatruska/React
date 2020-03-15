@@ -2,38 +2,29 @@ import React from "react";
 import {connect} from "react-redux";
 import {logoutActionCreator, setUserDataActionCreator} from "../../../reducers/loginReducer";
 import Header from "../Header";
-import axios from "axios";
+import {getAuthRequest, getLogoutRequest} from "../../../DAL/Auth/authAPI";
 
 class HeaderContainer extends React.Component{
 
     componentDidMount() {
-        axios
-            .get("https://social-network.samuraijs.com/api/1.0/auth/me", {
-                withCredentials : true
-            })
-            .then(
-                (response) => {
-                    let data = response.data;
-                    if (data.resultCode === 0){
-                        this.props.setUserData(data.data);
-                    }
+        getAuthRequest().then(
+            (response) => {
+                debugger;
+                let data = response.data;
+                if (data.resultCode === 0){
+                    this.props.setUserData(data.data);
                 }
-            );
+            }
+        );
     }
 
     logout = () => {
-        axios
-            .delete("https://social-network.samuraijs.com/api/1.0/auth/login", {
-                withCredentials : true
-            })
-            .then((response) => {
-                debugger;
+       getLogoutRequest().then((response) => {
                 this.props.logout();
-            });
+       });
     };
 
     render() {
-        debugger;
         if (this.props.isLogged){
             return <Header email={this.props.email} logout={this.logout}/>
         } else {

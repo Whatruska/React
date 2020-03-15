@@ -1,5 +1,3 @@
-import loginDataCopier from "../copiers/loginDataCopier";
-
 let SET_USER_ID = "LOGIN_ID";
 let SET_EMAIL = "SET_EMAIL";
 let LOG_IN = "LOG_IN";

@@ -2,50 +2,35 @@ import React from "react";
 import {connect} from "react-redux";
 import {followActionCreator, unfollowActionCreator, toggleFetchActionCreator} from "../../../reducers/userListReducer";
 import UserListItem from "./UserListItem";
-import axios from "axios";
+import {getFollowRequest, getUnfollowRequest} from "../../../DAL/UserList/Follow/followAPI";
 
 class UserListItemContainer extends React.Component{
 
-    baseUrl = "https://social-network.samuraijs.com/api/1.0/follow/";
-    API_KEY = "731c78c9-2985-45c6-a952-87bbf4059b50";
-
     follow = (id) => {
+        debugger;
         this.props.toggleFetching();
-        axios
-            .post(this.baseUrl + id, {}, {
-                withCredentials : true,
-                headers : {
-                    "API-KEY" : this.API_KEY
+        getFollowRequest(id).then(
+            (response) => {
+                debugger;
+                if (response.data.resultCode === 0){
+                    this.props.follow(id);
                 }
-            })
-            .then(
-                (response) => {
-                    if (response.data.resultCode === 0){
-                        this.props.follow(id);
-                    }
-                    this.props.toggleFetching();
-                }
-            );
+                this.props.toggleFetching();
+            }
+        );
     };
 
     unfollow = (id) => {
         this.props.toggleFetching();
-        axios
-            .delete(this.baseUrl + id, {
-                withCredentials : true,
-                headers : {
-                    "API-KEY" : this.API_KEY
+        getUnfollowRequest(id).then(
+            (response) => {
+                debugger;
+                if (response.data.resultCode === 0){
+                    this.props.unfollow(id);
                 }
-            })
-            .then(
-                (response) => {
-                    debugger;
-                    if (response.data.resultCode === 0){
-                        this.props.unfollow(id);
-                    }
-                    this.props.toggleFetching();
-                }
-            );
+                this.props.toggleFetching();
+            }
+        );
     };
 
     render() {

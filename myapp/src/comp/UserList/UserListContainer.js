@@ -1,31 +1,24 @@
 import {connect} from "react-redux";
 import {
     followActionCreator, setPageCountActionCreator,
-    setPageSize,
     setPageSizeActionCreator,
     setUsersActionCreator, toggleFetchActionCreator, unfollowActionCreator
 } from "../../reducers/userListReducer";
 import React from "react";
-import * as axios from "axios";
 import classes from "./List/UserList.module.css";
 import avatar from "../../img/user.png";
 import header from "../../img/profile-header.jpeg";
 import UserList from "./List/UserList";
 import UserListItemContainer from "./UserListItem/UserListItemContainer";
+import {getPageRequest} from "../../DAL/UserList/userListAPI";
 
 class UserListAPIComponent extends React.Component{
     inc = "INC";
     dec = "DEC";
 
-    formRequest = (basicUrl = this.basicUrl, pageCount = 1, pageSize = 6) => {
-        return basicUrl + "?" + "page=" + pageCount + "&count=" + pageSize;
-    };
-
     componentDidMount() {
         this.refresh()
     }
-
-    basicUrl = "https://social-network.samuraijs.com/api/1.0/users";
 
     refresh = (mode) => {
         this.props.toggleFetching();
@@ -33,29 +26,22 @@ class UserListAPIComponent extends React.Component{
         if (mode){
             pageCount = this.changePageCount(mode);
         }
-        debugger;
-        axios
-            .get(this.formRequest(this.basicUrl,pageCount, this.props.pageSize), {
-                withCredentials : true
-            })
-            .then((response) => {
-                let userItems = response.data.items.map((reps) => {
-                    return this.formUserFromResponse(reps)
-                });
-                this.props.setUsers(userItems);
-                this.props.toggleFetching();
+        getPageRequest(pageCount, this.props.pageSize).then((response) => {
+            let userItems = response.data.items.map((reps) => {
+                return this.formUserFromResponse(reps)
             });
+            this.props.setUsers(userItems);
+            this.props.toggleFetching();
+        });
     };
 
     changePageCount = (mode) => {
-        debugger;
         let pageCount = this.props.pageCount;
         let set = this.props.setPageCount;
         switch (mode) {
             case this.inc : {
                 set(pageCount + 1);
                 return pageCount + 1;
-                break;
             }
 
             case this.dec : {
@@ -68,7 +54,6 @@ class UserListAPIComponent extends React.Component{
 
             default : {
                 return pageCount;
-                break;
             }
         }
     };
