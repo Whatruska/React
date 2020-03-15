@@ -98,7 +98,6 @@ let setUsersActionCreator = (users) => {
 };
 
 let setPageCountActionCreator = (count) => {
-    debugger;
     return({
         type : SET_PAGE_COUNT,
         count : count

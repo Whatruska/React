@@ -21,9 +21,21 @@ class HeaderContainer extends React.Component{
             );
     }
 
+    logout = () => {
+        axios
+            .delete("https://social-network.samuraijs.com/api/1.0/auth/login", {
+                withCredentials : true
+            })
+            .then((response) => {
+                debugger;
+                this.props.logout();
+            });
+    };
+
     render() {
+        debugger;
         if (this.props.isLogged){
-            return <Header email={this.props.email} logout={this.props.logout}/>
+            return <Header email={this.props.email} logout={this.logout}/>
         } else {
             return <Header/>
         }

@@ -28,7 +28,6 @@ class UserListAPIComponent extends React.Component{
     basicUrl = "https://social-network.samuraijs.com/api/1.0/users";
 
     refresh = (mode) => {
-        debugger;
         this.props.toggleFetching();
         let pageCount = this.props.pageCount;
         if (mode){
