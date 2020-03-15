@@ -17,9 +17,11 @@ class LoginContainer extends React.Component{
 
     login = (email, pass) => {
         this.props.toggleFetching();
+        debugger;
         axios
             .post(this.baseUrl + "?email=" + email + "&password=" + pass)
             .then((response) => {
+                debugger;
                 let data = response.data;
                 if (data.resultCode === 0){
                     this.props.setEmail(email);
