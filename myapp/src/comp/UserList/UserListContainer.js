@@ -28,38 +28,47 @@ class UserListAPIComponent extends React.Component{
     basicUrl = "https://social-network.samuraijs.com/api/1.0/users";
 
     refresh = (mode) => {
+        debugger;
         this.props.toggleFetching();
+        let pageCount = this.props.pageCount;
+        if (mode){
+            pageCount = this.changePageCount(mode);
+        }
+        debugger;
         axios
-            .get(this.formRequest(this.basicUrl,this.props.pageCount, this.props.pageSize))
+            .get(this.formRequest(this.basicUrl,pageCount, this.props.pageSize), {
+                withCredentials : true
+            })
             .then((response) => {
                 let userItems = response.data.items.map((reps) => {
                     return this.formUserFromResponse(reps)
                 });
-                if (mode){
-                    this.changePageCount(mode);
-                }
                 this.props.setUsers(userItems);
                 this.props.toggleFetching();
             });
     };
 
     changePageCount = (mode) => {
+        debugger;
         let pageCount = this.props.pageCount;
         let set = this.props.setPageCount;
         switch (mode) {
             case this.inc : {
                 set(pageCount + 1);
+                return pageCount + 1;
                 break;
             }
 
             case this.dec : {
                 if (pageCount > 1){
                     set(pageCount - 1);
+                    return pageCount - 1;
                 }
                 break;
             }
 
             default : {
+                return pageCount;
                 break;
             }
         }

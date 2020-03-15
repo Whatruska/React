@@ -8,8 +8,6 @@ let SET_PAGE_COUNT = "SET_PAGE_COUNT";
 let SET_PAGE_SIZE = "SET_PAGE_SIZE";
 let TOGGLE_FETCH = "TOGGLE_FETCH";
 
-let followUrl = "https://social-network.samuraijs.com/api/1.0";
-
 let initialState = {
     users : [
         Anya, Misha, Zeka
@@ -56,6 +54,7 @@ let userListReducer = (state = initialState, action) => {
         }
 
         case SET_PAGE_COUNT : {
+            debugger;
             stateCopy.pageCount = action.count;
             break;
         }
@@ -99,6 +98,7 @@ let setUsersActionCreator = (users) => {
 };
 
 let setPageCountActionCreator = (count) => {
+    debugger;
     return({
         type : SET_PAGE_COUNT,
         count : count

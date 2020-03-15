@@ -10,7 +10,6 @@ let UserListItem = (props) => {
     let folFunc = () => {
         !user.followed ? props.follow(user.id) : props.unfollow(user.id);
     };
-
       return (
           <div className={classes.UserListItem}>
               <div className={classes.meta}>
