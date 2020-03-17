@@ -1,4 +1,6 @@
 import profilePageCopier from "../copiers/profilePageCopier";
+import profileAPI from "../DAL/Profile/profileAPI";
+import {getUserByLogin} from "../data/users";
 
 let FETCH_TYPE = "FETCH";
 let SET_PROFILE = "SET_PROFILE";
@@ -41,5 +43,31 @@ let setProfileActionCreator = (profile) => {
     });
 };
 
-export {toggleFetchingActionCreator, setProfileActionCreator};
+let requestThunkCreator = (userId) => {
+    return (dispatch) => {
+        profileAPI.getProfileRequest(userId).then((profile) => {
+            dispatch(setProfileActionCreator(profile));
+            dispatch(toggleFetchingActionCreator());
+        });
+    }
+};
+
+let refreshThunkCreator = (userId, isFetching) => {
+    return (dispatch) => {
+        debugger;
+        if (!isFetching){
+            dispatch(toggleFetchingActionCreator());
+        }
+        let m = userId.match(new RegExp('\\d+'));
+        if (m != null){
+            dispatch(requestThunkCreator(userId));
+        } else {
+            let profile = getUserByLogin(userId);
+            dispatch(setProfileActionCreator(profile));
+            dispatch(toggleFetchingActionCreator());
+        }
+    }
+}
+
+export {toggleFetchingActionCreator, setProfileActionCreator, requestThunkCreator, refreshThunkCreator};
 export default profileReducer;

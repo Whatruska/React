@@ -34,7 +34,7 @@ let mapDispatchToProps = (dispatch) => {
             dispatch(authThunkCreator());
         },
         logout : () => {
-            dispatch(logoutThunkCreator);
+            dispatch(logoutThunkCreator());
         }
     });
 };

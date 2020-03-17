@@ -1,5 +1,7 @@
 import {Anya, Misha, Zeka} from "../data/users";
 import userListCopier from "../copiers/userListCopier";
+import userListAPI from "../DAL/UserList/userListAPI";
+import followAPI from "../DAL/UserList/Follow/followAPI";
 
 let FOLLOW_TYPE = "FOLLOW";
 let UNFOLLOW_TYPE = "UNFOLLOW";
@@ -16,6 +18,9 @@ let initialState = {
     pageCount : 1,
     isFetching : false
 };
+
+let INC = "INC";
+let DEC = "DEC";
 
 let getUserByID = (id, users) => {
     for (let i = 0; i < users.length; i++){
@@ -109,6 +114,54 @@ let toggleFetchActionCreator = () => {
     });
 };
 
-export {followActionCreator, setUsersActionCreator, setPageCountActionCreator, setPageSizeActionCreator, toggleFetchActionCreator, unfollowActionCreator};
+let refreshThunkCreator = (mode, pageCount, pageSize) => (dispatch) => {
+    dispatch(toggleFetchActionCreator());
+    if (mode){
+        switch (mode) {
+            case INC : {
+                dispatch(setPageCountActionCreator(pageCount++));
+                break;
+            }
+
+            case DEC : {
+                dispatch(setPageCountActionCreator(pageCount--));
+                break;
+            }
+            default : {
+                break;
+            }
+        }
+    }
+    userListAPI.getPageRequest(pageCount, pageSize).then((items) => {
+        dispatch(setUsersActionCreator(items));
+        dispatch(toggleFetchActionCreator());
+    });
+};
+
+let followThunkCreator = (id) => (dispatch) => {
+    dispatch(toggleFetchActionCreator());
+    followAPI.getFollowRequest(id).then(
+        (data) => {
+            if (data.resultCode === 0){
+                dispatch(followActionCreator(id));
+            }
+            dispatch(toggleFetchActionCreator());
+        }
+    );
+};
+
+let unfollowThunkCreator = (id) => (dispatch) => {
+    dispatch(toggleFetchActionCreator());
+    followAPI.getUnfollowRequest(id).then(
+        (data) => {
+            if (data.resultCode === 0){
+                dispatch(unfollowActionCreator(id));
+            }
+            dispatch(toggleFetchActionCreator());
+        }
+    );
+};
+
+export {followActionCreator, setUsersActionCreator, setPageCountActionCreator, setPageSizeActionCreator, toggleFetchActionCreator, unfollowActionCreator, INC, DEC, refreshThunkCreator, followThunkCreator, unfollowThunkCreator};
 
 export default userListReducer;

@@ -1,39 +1,14 @@
 import React from "react";
 import {connect} from "react-redux";
-import {followActionCreator, unfollowActionCreator, toggleFetchActionCreator} from "../../../reducers/userListReducer";
+import {
+    toggleFetchActionCreator,
+    followThunkCreator, unfollowThunkCreator
+} from "../../../reducers/userListReducer";
 import UserListItem from "./UserListItem";
-import followAPI from "../../../DAL/UserList/Follow/followAPI";
 
 class UserListItemContainer extends React.Component{
-
-    follow = (id) => {
-        this.props.toggleFetching();
-        followAPI.getFollowRequest(id).then(
-            (data) => {
-                debugger;
-                if (data.resultCode === 0){
-                    this.props.follow(id);
-                }
-                this.props.toggleFetching();
-            }
-        );
-    };
-
-    unfollow = (id) => {
-        this.props.toggleFetching();
-        followAPI.getUnfollowRequest(id).then(
-            (data) => {
-                debugger;
-                if (data.resultCode === 0){
-                    this.props.unfollow(id);
-                }
-                this.props.toggleFetching();
-            }
-        );
-    };
-
     render() {
-        return(<UserListItem user={this.props.user} follow={this.follow} unfollow={this.unfollow}/>);
+        return(<UserListItem user={this.props.user} follow={this.props.follow} unfollow={this.props.unfollow}/>);
     }
 }
 
@@ -46,10 +21,10 @@ let mapStateToProps = (state) => {
 let mapDispatchToProps = (dispatch) => {
     return({
         follow : (id) => {
-            dispatch(followActionCreator(id));
+            dispatch(followThunkCreator(id));
         },
         unfollow : (id) => {
-            dispatch(unfollowActionCreator(id));
+            dispatch(unfollowThunkCreator(id));
         },
         toggleFetching : () => {
             dispatch(toggleFetchActionCreator());
@@ -59,6 +34,7 @@ let mapDispatchToProps = (dispatch) => {
 
 let mergeProps = (stateProps, dispatchProps, props) => {
     return({
+        isFetching : stateProps.isFetching,
         user : props.user,
         follow : dispatchProps.follow,
         unfollow : dispatchProps.unfollow,

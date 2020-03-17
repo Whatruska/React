@@ -130,8 +130,23 @@ let logoutThunkCreator = () => {
     }
 };
 
+let loginThunkCreator = (email, pass) => {
+    return (dispatch) => {
+        dispatch(toggleFetchActionCreator());
+        authAPI.getLoginRequest(email,pass).then((data) => {
+            if (data.resultCode === 0){
+                debugger;
+                dispatch(setEmailActionCreator(email));
+                dispatch(setUserIdActionCreator(data.data.userId));
+                dispatch(loginActionCreator());
+            } else {
+                dispatch(setErrorMessageActionCreator("Неверно введены email/пароль"));
+            }
+            dispatch(toggleFetchActionCreator());
+        });
+    }
+}
 
-
-export {setUserIdActionCreator, setEmailActionCreator, loginActionCreator, logoutActionCreator, toggleFetchActionCreator, setErrorMessageActionCreator, setUserDataActionCreator, authThunkCreator, logoutThunkCreator}
+export {setUserIdActionCreator, setEmailActionCreator, loginActionCreator, logoutActionCreator, toggleFetchActionCreator, setErrorMessageActionCreator, setUserDataActionCreator, authThunkCreator, logoutThunkCreator, loginThunkCreator}
 
 export default loginReducer;
