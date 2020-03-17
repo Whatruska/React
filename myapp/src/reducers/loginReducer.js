@@ -122,8 +122,16 @@ let authThunkCreator = () => {
      }
 };
 
+let logoutThunkCreator = () => {
+    return (dispatch) => {
+        authAPI.getLogoutRequest().then((data) => {
+            dispatch(logoutActionCreator());
+        });
+    }
+};
 
 
-export {setUserIdActionCreator, setEmailActionCreator, loginActionCreator, logoutActionCreator, toggleFetchActionCreator, setErrorMessageActionCreator, setUserDataActionCreator, authThunkCreator}
+
+export {setUserIdActionCreator, setEmailActionCreator, loginActionCreator, logoutActionCreator, toggleFetchActionCreator, setErrorMessageActionCreator, setUserDataActionCreator, authThunkCreator, logoutThunkCreator}
 
 export default loginReducer;
