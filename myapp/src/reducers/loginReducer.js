@@ -1,3 +1,5 @@
+import authAPI from "../DAL/Auth/authAPI";
+
 let SET_USER_ID = "LOGIN_ID";
 let SET_EMAIL = "SET_EMAIL";
 let LOG_IN = "LOG_IN";
@@ -108,8 +110,20 @@ let setUserDataActionCreator = (data) => {
     })
 };
 
+let authThunkCreator = () => {
+     return (dispatch) => {
+         authAPI.getAuthRequest().then(
+             (data) => {
+                 if (data.resultCode === 0) {
+                     dispatch(setUserDataActionCreator(data.data));
+                 }
+             }
+         );
+     }
+};
 
 
-export {setUserIdActionCreator, setEmailActionCreator, loginActionCreator, logoutActionCreator, toggleFetchActionCreator, setErrorMessageActionCreator, setUserDataActionCreator}
+
+export {setUserIdActionCreator, setEmailActionCreator, loginActionCreator, logoutActionCreator, toggleFetchActionCreator, setErrorMessageActionCreator, setUserDataActionCreator, authThunkCreator}
 
 export default loginReducer;

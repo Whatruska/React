@@ -1,19 +1,16 @@
 import React from "react";
 import {connect} from "react-redux";
-import {logoutActionCreator, setUserDataActionCreator} from "../../../reducers/loginReducer";
+import {
+    authThunkCreator,
+    logoutActionCreator,
+} from "../../../reducers/loginReducer";
 import Header from "../Header";
 import authAPI from "../../../DAL/Auth/authAPI";
 
 class HeaderContainer extends React.Component{
 
     componentDidMount() {
-        authAPI.getAuthRequest().then(
-            (data) => {
-                if (data.resultCode === 0){
-                    this.props.setUserData(data.data);
-                }
-            }
-        );
+        this.props.auth();
     }
 
     logout = () => {
@@ -40,12 +37,12 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return({
-       logout : () => {
-           dispatch(logoutActionCreator());
-       },
-        setUserData : (data) => {
-           dispatch(setUserDataActionCreator(data));
-        }
+        auth : () => {
+            dispatch(authThunkCreator());
+        },
+        logout : () => {
+            dispatch(logoutActionCreator());
+        },
     });
 };
 
