@@ -1,6 +1,6 @@
 import React from 'react';
 import './Main.css';
-import {BrowserRouter, Route} from "react-router-dom";
+import {BrowserRouter, Redirect, Route} from "react-router-dom";
 import Navbar from './Navbar/Navbar';
 import Messages from "./Messages/Messages";
 import Profile from "./Profile/Profile";
@@ -41,6 +41,7 @@ class Main extends React.Component{
             return (
                 <BrowserRouter>
                     <div className='Main'>
+                        <Redirect to={"/"}/>
                         <Route path="/" exact render={() => <LoginContainer/>}/>
                     </div>
                 </BrowserRouter>

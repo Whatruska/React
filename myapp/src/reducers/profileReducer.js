@@ -4,10 +4,12 @@ import {getUserByLogin} from "../data/users";
 
 let FETCH_TYPE = "FETCH";
 let SET_PROFILE = "SET_PROFILE";
+let SET_STATUS = "STATUS";
 
 let initialState = {
     currentProfile : undefined,
-    isFetching : true
+    isFetching : true,
+    status : ""
 };
 
 let profileReducer = (state = initialState, action) => {
@@ -20,6 +22,11 @@ let profileReducer = (state = initialState, action) => {
 
         case SET_PROFILE : {
             stateCopy.currentProfile = action.profile;
+            break;
+        }
+
+        case SET_STATUS : {
+            stateCopy.status = action.status;
             break;
         }
 
@@ -43,6 +50,21 @@ let setProfileActionCreator = (profile) => {
     });
 };
 
+let setStatusActionCreator = (status) => {
+    return ({
+        type : SET_STATUS,
+        status : status
+    });
+};
+
+let statusThunkCreator = (userId) => {
+    return (dispatch) => {
+        profileAPI.getStatusRequest(userId).then((status) => {
+            dispatch(setStatusActionCreator(status));
+        });
+    }
+};
+
 let requestThunkCreator = (userId) => {
     return (dispatch) => {
         profileAPI.getProfileRequest(userId).then((profile) => {
@@ -54,7 +76,6 @@ let requestThunkCreator = (userId) => {
 
 let refreshThunkCreator = (userId, isFetching) => {
     return (dispatch) => {
-        debugger;
         if (!isFetching){
             dispatch(toggleFetchingActionCreator());
         }
@@ -67,7 +88,7 @@ let refreshThunkCreator = (userId, isFetching) => {
             dispatch(toggleFetchingActionCreator());
         }
     }
-}
+};
 
-export {toggleFetchingActionCreator, setProfileActionCreator, requestThunkCreator, refreshThunkCreator};
+export {toggleFetchingActionCreator, setProfileActionCreator, setStatusActionCreator, requestThunkCreator, refreshThunkCreator, statusThunkCreator};
 export default profileReducer;

@@ -3,9 +3,14 @@ import My_avatar from "../../img/ava.jpeg";
 import profile_header from "../../img/profile-header.jpeg";
 
 const PROFILE_URL = "profile/";
+const STATUS_URL = PROFILE_URL + "status/";
 
 let formProfileUrl = (userId) => {
     return PROFILE_URL + userId
+};
+
+let formStatusUrl = (userId) => {
+    return STATUS_URL + userId;
 };
 
 const profileAPI = {
@@ -22,6 +27,9 @@ const profileAPI = {
                 header: profile_header
             };
         });
+    },
+    getStatusRequest : (userId) => {
+        return api.get(formStatusUrl(userId)).then((response) => response.data);
     }
 };
 

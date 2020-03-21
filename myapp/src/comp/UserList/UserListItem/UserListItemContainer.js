@@ -8,6 +8,7 @@ import UserListItem from "./UserListItem";
 
 class UserListItemContainer extends React.Component{
     render() {
+        debugger;
         return(<UserListItem user={this.props.user} follow={this.props.follow} unfollow={this.props.unfollow}/>);
     }
 }
@@ -33,6 +34,7 @@ let mapDispatchToProps = (dispatch) => {
 };
 
 let mergeProps = (stateProps, dispatchProps, props) => {
+    debugger;
     return({
         isFetching : stateProps.isFetching,
         user : props.user,

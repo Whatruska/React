@@ -4,6 +4,7 @@ import React from "react";
 import classes from "./List/UserList.module.css";
 import UserList from "./List/UserList";
 import UserListItemContainer from "./UserListItem/UserListItemContainer";
+import {Redirect} from "react-router";
 
 class UserListAPIComponent extends React.Component{
 
@@ -51,21 +52,28 @@ class UserListAPIComponent extends React.Component{
 
     render() {
         let renderedUsers = this.getRenderedUserItems(this.props.users);
-        return(
-            <UserList
-                renderedUsers={renderedUsers}
-                refresh={this.refresh}
-                inc={this.inc}
-                dec={this.dec}
-                pageCount={this.props.pageCount}
-                isFetching={this.props.isFetching}
-            />
-        );
+        if (this.props.isLogged){
+            return(
+                <UserList
+                    renderedUsers={renderedUsers}
+                    refresh={this.refresh}
+                    inc={this.inc}
+                    dec={this.dec}
+                    pageCount={this.props.pageCount}
+                    isFetching={this.props.isFetching}
+                />
+            );
+        } else {
+            return (
+                <Redirect to={"/"}/>
+            );
+        }
     }
 }
 
 let mapStateToProps = (state) => {
     return({
+        isLogged : state.loginData.isLogged,
         users : state.userList.users,
         pageSize : state.userList.pageSize,
         pageCount : state.userList.pageCount,
@@ -82,5 +90,6 @@ let mapDispatchToProps = (dispatch) => {
         }
     });
 };
+let connected = connect(mapStateToProps, mapDispatchToProps)(UserListAPIComponent);
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserListAPIComponent);
+export default connected;

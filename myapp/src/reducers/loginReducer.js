@@ -135,7 +135,6 @@ let loginThunkCreator = (email, pass) => {
         dispatch(toggleFetchActionCreator());
         authAPI.getLoginRequest(email,pass).then((data) => {
             if (data.resultCode === 0){
-                debugger;
                 dispatch(setEmailActionCreator(email));
                 dispatch(setUserIdActionCreator(data.data.userId));
                 dispatch(loginActionCreator());
