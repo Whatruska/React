@@ -1,10 +1,11 @@
 import React from "react";
 import classes from "./Greeting.module.css";
+import gif from "../../img/Greetings.gif"
 
 let Greetings = () => {
     return(
         <div className={classes.Greeting}>
-            <h2 className={classes.title}>Greetings!</h2>
+            <img src={gif} alt="gif"/>
         </div>
     );
 };
