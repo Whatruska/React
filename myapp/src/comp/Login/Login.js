@@ -2,14 +2,11 @@ import React from "react";
 import classes from "./Login.module.css";
 import {Field, reduxForm} from "redux-form";
 
-let emailLink = React.createRef();
-let passLink = React.createRef();
-
 let LoginForm = (props) => {
     return(
         <form className={classes.loginForm} onSubmit={props.handleSubmit}>
-            <Field placeholder={"E-mail"} type={"e-mail"} name={"email"} className={classes.input} ref={emailLink} component={"input"}/>
-            <Field placeholder={"Password"} type={"password"} name={"password"} className={classes.input} ref={passLink} component={"input"}/>
+            <Field placeholder={"E-mail"} type={"e-mail"} name={"email"} className={classes.input} component={"input"}/>
+            <Field placeholder={"Password"} type={"password"} name={"password"} className={classes.input} component={"input"}/>
             <div>
                 {props.errorMessage}
             </div>

@@ -1,37 +1,25 @@
 import React from 'react';
-import Post from '../Post/Post';
 import classes from './Posts.module.css';
+import {Field, reduxForm} from "redux-form";
+
+let PostsForm = (props) => {
+    return(
+        <form className={classes.form} onSubmit={props.handleSubmit}>
+            <Field component={"textarea"} name={"post"} className={classes.textarea}></Field>
+            <button className={classes.button}>Submit</button>
+        </form>
+    );
+}
+
+let PostsFormRedux = reduxForm({form : "postsForm"})(PostsForm)
 
 const Posts = (props) => {
-    let renderedPosts = props.posts.map((post) => {
-        return (
-            <Post text={post.text} likes={post.likes} ava={props.avatar}/>
-        );
-    });
-
-    let ref = React.createRef();
-
-    debugger;
     return (
     <div className={classes.posts}>
         <h2>Posts</h2>
-            {props.login === "Whatruska"
-                ? <form className={classes.form}>
-                    <textarea className={classes.textarea} ref={ref}></textarea>
-                    <button className={classes.button} onClick={(e) => {
-                        e.preventDefault();
-                        let text = ref.current.value;
-                        if (text !== ""){
-                            props.add(text);
-                        }
-                        ref.current.value = "";
-                    }}>Submit</button>
-                 </form>
-                : <></>
-            }
-
+        <PostsFormRedux onSubmit={props.addPost}/>
         <div className={classes.list}>
-            {renderedPosts}
+            {props.renderedPosts}
         </div>
     </div>
     );

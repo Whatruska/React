@@ -21,7 +21,6 @@ class Status extends React.Component {
     };
 
     render() {
-        debugger;
         if (!this.state.editMode){
             return (
               <div onDoubleClick={this.activateEdit} className={classes.status}>

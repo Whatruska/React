@@ -12,16 +12,6 @@ let getUserPagesCopy = (state) => {
         stateCopy.users[i].avatar = state.users[i].avatar;
         stateCopy.users[i].header = state.users[i].header;
         stateCopy.users[i].posts = [...state.users[i].posts];
-        for (let j = 0; j < state.users[i].posts; j++){
-            stateCopy.users[i].posts[j] = {...state.users[i].posts[j]};
-            stateCopy.users[i].posts[j].userId = state.users[i].posts[j].userId;
-            stateCopy.users[i].posts[j].p = [...state.users[i].posts[j].p];
-            for (let k = 0; k < state.users[i].posts[j].p.length; k++){
-                stateCopy.users[i].posts[j].p[k] = {...state.users[i].posts[j].p[k]};
-                stateCopy.users[i].posts[j].p[k].text = state.users[i].posts[j].p[k].text;
-                stateCopy.users[i].posts[j].p[k].likes = state.users[i].posts[j].p[k].likes;
-            }
-        }
     }
 
     return stateCopy;

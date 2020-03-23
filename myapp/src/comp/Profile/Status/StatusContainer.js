@@ -5,7 +5,6 @@ import {setStatusActionCreator, statusThunkCreator} from "../../../reducers/prof
 
 class StatusContainer extends React.Component {
     componentDidMount() {
-        debugger;
         this.props.getStatus(this.props.id);
     }
 
