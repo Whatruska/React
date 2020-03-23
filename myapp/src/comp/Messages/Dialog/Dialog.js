@@ -1,31 +1,23 @@
 import React from "react";
 import classes from "./Dialog.module.css";
-import Message from "./Message/Message";
+import {Field, reduxForm} from "redux-form";
+
+let MessageForm = (props) => {
+    return(
+        <form className={classes.form} onSubmit={props.handleSubmit}>
+            <Field component={"textarea"} name={"message"} className={classes.textarea}></Field>
+            <button className={classes.button}>Submit</button>
+        </form>
+    );
+}
+
+let MessageFormRedux = reduxForm({form : "messageForm"})(MessageForm);
 
 const Dialog = (props) => {
-    let renderedMessages = props.messages.map((message) => {
-        return(
-            <Message author={message.author} text={message.text}/>
-        );
-    });
-
-    let ref = React.createRef();
-
     return(
         <div className={classes.Dialog}>
-            {renderedMessages}
-            <form className={classes.form}>
-                <textarea className={classes.textarea} ref={ref}></textarea>
-                <button className={classes.button} onClick={(e) => {
-                    //debugger;
-                    e.preventDefault();
-                    let text = ref.current.value;
-                    if (text !== ""){
-                        props.add(text, props.id);
-                    }
-                    ref.current.value = "";
-                }}>Submit</button>
-            </form>
+            {props.renderedMessages}
+            <MessageFormRedux onSubmit={props.addMsg}/>
         </div>
     );
 };

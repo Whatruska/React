@@ -1,6 +1,24 @@
 import {connect} from "react-redux";
 import Dialog from "./Dialog";
 import {addMsgActionCreator} from "../../../reducers/messageReducer";
+import * as React from "react";
+import Message from "./Message/Message";
+
+class DialogContainer extends React.Component{
+    renderMessages = () => this.props.messages.map((message) => {
+        return(
+            <Message author={message.author} text={message.text}/>
+        );
+    });
+
+    addMessage = (data) =>{
+        this.props.add(data.message, this.props.id);
+    }
+
+    render() {
+        return(<Dialog renderedMessages={this.renderMessages()} addMsg={this.addMessage}/>);
+    }
+}
 
 let mapStateToProps = (state) => {
     return({
@@ -33,6 +51,6 @@ let getMsgsByID = (messages, id) => {
     }
 }
 
-const DialogContainer = connect(mapStateToProps, mapDispatchToProps, mergeProps)(Dialog);
+const ConnectedDialogContainer = connect(mapStateToProps, mapDispatchToProps, mergeProps)(DialogContainer);
 
-export default DialogContainer;
+export default ConnectedDialogContainer;
