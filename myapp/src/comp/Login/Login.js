@@ -1,37 +1,31 @@
 import React from "react";
-import classes from "./Login.module.css"
+import classes from "./Login.module.css";
+import {Field, reduxForm} from "redux-form";
 
 let emailLink = React.createRef();
 let passLink = React.createRef();
 
-class Login extends React.Component {
-    renderedMessages = (messages) => {
-        if (messages){
-            return messages.map((item) => {
-                return(
-                    <div className={classes.errorMessage}>{item}</div>
-                );
-            });
-        }
-    };
+let LoginForm = (props) => {
+    return(
+        <form className={classes.loginForm} onSubmit={props.handleSubmit}>
+            <Field placeholder={"E-mail"} type={"e-mail"} name={"email"} className={classes.input} ref={emailLink} component={"input"}/>
+            <Field placeholder={"Password"} type={"password"} name={"password"} className={classes.input} ref={passLink} component={"input"}/>
+            <div>
+                {props.errorMessage}
+            </div>
+            <button type={"submit"} className={classes.btn}>Login</button>
+        </form>
+    )
+};
 
+let LoginFormRedux = reduxForm({form : "loginForm"})(LoginForm);
+
+class Login extends React.Component {
     render() {
         return(
             <div className={classes.Login}>
-                <form className={classes.loginForm}>
-                    <h1 className={classes.heading}>Welcome</h1>
-                    <input placeholder={"E-mail"} type={"e-mail"} className={classes.input} ref={emailLink}/>
-                    <input placeholder={"Password"} type={"password"} className={classes.input} ref={passLink}/>
-                    <div className={classes.errorMessagesWrapper}>
-                        {this.renderedMessages(this.props.errorMessage)}
-                    </div>
-                    <button type={"submit"} className={classes.btn} onClick={(e) => {
-                        e.preventDefault();
-                        let email = emailLink.current.value;
-                        let password = passLink.current.value;
-                        this.props.login(email, password);
-                    }}>Login</button>
-                </form>
+                <h1 className={classes.heading}>Welcome</h1>
+                <LoginFormRedux onSubmit={this.props.login} errorMessage={this.props.errorMessage}/>
             </div>
         );
     }

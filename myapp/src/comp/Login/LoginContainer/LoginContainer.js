@@ -6,7 +6,14 @@ import Preloader from "../../Preloader/Preloader";
 import classes from "./LoginContainer.module.css";
 
 class LoginContainer extends React.Component{
+    login = (data) => {
+        let email = data.email;
+        let password = data.password;
+        this.props.login(email, password);
+    }
+
     render() {
+        let message = this.renderedMessages(this.props.errorMessage);
         if (!this.props.isLogged){
             if (this.props.isFetching){
                 return(
@@ -15,11 +22,21 @@ class LoginContainer extends React.Component{
                     </div>
                     );
             } else {
-                return <Login login={this.props.login} errorMessage={this.props.errorMessage}/>
+                return <Login login={this.login} errorMessage={message}/>
             }
         }
         return <></>
     }
+
+    renderedMessages = (messages) => {
+        if (messages){
+            return messages.map((item) => {
+                return(
+                    <div className={classes.errorMessage}>{item}</div>
+                );
+            });
+        }
+    };
 }
 
 let mapStateToProps = (state) => {
