@@ -1,0 +1,23 @@
+.TextArea{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.textarea{
+    resize: none;
+    outline: none;
+    border-radius: 20px;
+    font-size: 16px;
+    padding: 10px 10px;
+    background-color: #6C717C;
+    color: white;
+}
+
+.error{
+    border: 1px solid red;
+}
+
+.span{
+    color: red;
+}

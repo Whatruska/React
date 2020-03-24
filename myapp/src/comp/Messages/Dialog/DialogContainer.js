@@ -20,6 +20,15 @@ class DialogContainer extends React.Component{
     }
 }
 
+let getMsgsByID = (messages, id) => {
+    for (let i = 0; i < messages.length; i++){
+        let d = messages[i];
+        if (d.userId === id){
+            return d.dialog;
+        }
+    }
+}
+
 let mapStateToProps = (state) => {
     return({
         messages : state.messagesPage.messages,
@@ -41,15 +50,6 @@ let mergeProps = (stateProps, dispatchProps, props) => {
         add : dispatchProps.add
     });
 };
-
-let getMsgsByID = (messages, id) => {
-    for (let i = 0; i < messages.length; i++){
-        let d = messages[i];
-        if (d.userId === id){
-            return d.dialog;
-        }
-    }
-}
 
 const ConnectedDialogContainer = connect(mapStateToProps, mapDispatchToProps, mergeProps)(DialogContainer);
 

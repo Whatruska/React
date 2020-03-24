@@ -1,12 +1,18 @@
 import React from "react";
 import classes from "./Login.module.css";
 import {Field, reduxForm} from "redux-form";
+import {Input} from "../Validated/Input/Input";
+import {minLength} from "../../utils/validators/minLength";
+import {required} from "../../utils/validators/required";
+import {email} from "../../utils/validators/email";
+
+let minL = minLength(8);
 
 let LoginForm = (props) => {
     return(
         <form className={classes.loginForm} onSubmit={props.handleSubmit}>
-            <Field placeholder={"E-mail"} type={"e-mail"} name={"email"} className={classes.input} component={"input"}/>
-            <Field placeholder={"Password"} type={"password"} name={"password"} className={classes.input} component={"input"}/>
+            <Field placeholder={"E-mail"} type={"e-mail"} name={"email"} className={classes.input} component={Input} validate={[required, email]}/>
+            <Field placeholder={"Password"} type={"password"} name={"password"} className={classes.input} component={Input} validate={[required, minL]}/>
             <div>
                 {props.errorMessage}
             </div>
