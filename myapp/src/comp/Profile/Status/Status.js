@@ -1,4 +1,7 @@
 import React from "react";
+import {connect} from "react-redux";
+import {statusThunkCreator} from "../../../reducers/profileReducer";
+import {getUserByID} from "../../../data/users";
 import classes from "./Status.module.css";
 
 let link = React.createRef();
@@ -10,7 +13,7 @@ class Status extends React.Component {
 
     activateEdit = () => {
         this.setState({
-           editMode : true
+            editMode : true
         });
     };
 
@@ -20,29 +23,51 @@ class Status extends React.Component {
         });
     };
 
+    componentDidMount() {
+        this.props.getStatus(this.props.id);
+    }
+
     render() {
+        let status = this.props.status;
+        if (this.props.id < 5){
+            status = getUserByID(this.props.id).status;
+        }
         if (!this.state.editMode){
             return (
-              <div onDoubleClick={this.activateEdit} className={classes.status}>
-                  Status : {this.props.status}
-              </div>
+                <div onDoubleClick={this.activateEdit} className={classes.status}>
+                    Status : {status}
+                </div>
             );
-        } else if (this.props.id === 1) {
+        } else if (this.props.id < 5) {
             return (
-                <input type={"text"} ref={link} onBlur={() => {
+                <input type={"text"} className={classes.input} ref={link} onBlur={() => {
+                    getUserByID(this.props.id).status = link.current.value;
                     this.deactivateEdit();
-                    this.props.setStatus(link.current.value);
                 }
                 }/>
             );
         } else {
             return (
                 <div className={classes.status}>
-                    Status : {this.props.status}
+                    Status : {status}
                 </div>
             );
         }
     }
 }
 
-export default Status;
+let mapStateToProps = (state) => {
+    return({
+        status : state.profilePage.status
+    });
+};
+
+let mapDispatchToProps = (dispatch) => {
+    return ({
+       getStatus : (userId) => {
+           dispatch(statusThunkCreator(userId));
+       },
+    });
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Status);

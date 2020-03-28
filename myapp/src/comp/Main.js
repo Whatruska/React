@@ -12,7 +12,8 @@ import Greetings from "./Greetings/Greeting";
 
 class Main extends React.Component{
     myProfile = <Route path={"/Profile"} exact render={() => {
-        return(<Profile state={this.props.userPages[0]}/>);
+        let profile = this.props.userPages[0];
+        return(<Profile state={profile}/>);
     }}/>;
 
     renderedFriends = this.props.userPages.map((user) => {

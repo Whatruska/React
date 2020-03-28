@@ -22,6 +22,15 @@ let getUserByLogin = (login) => {
     }
 };
 
+let getUserByID = (id) => {
+    let users = [Me,Anya,Misha,Zeka];
+    for (let i = 0; i < users.length; i++){
+        if (users[i].id === id){
+            return users[i];
+        }
+    }
+};
+
 let Me = {
     id : 1,
     login : "Whatruska",
@@ -31,7 +40,8 @@ let Me = {
     vk : "vk.com/vitdub",
     avatar : My_avatar,
     header: profile_header,
-    posts : getPostsByID(1)
+    posts : getPostsByID(1),
+    status : "Пишем код слезами"
 };
 
 let Anya = {
@@ -44,7 +54,8 @@ let Anya = {
     avatar : Anya_ava,
     header : profile_header,
     posts : getPostsByID(2),
-    followed : false
+    followed : false,
+    status : "Эконом - чемпион"
 };
 
 let Zeka = {
@@ -57,7 +68,8 @@ let Zeka = {
     avatar : Zeka_ava,
     header : profile_header,
     posts : getPostsByID(4),
-    followed : true
+    followed : true,
+    status : "Misha kozel"
 };
 
 let Misha = {
@@ -70,7 +82,8 @@ let Misha = {
     avatar : Misha_ava,
     header : profile_header,
     posts : getPostsByID(3),
-    followed : false
+    followed : false,
+    status : "За армейку и двор"
 };
 
 let friends = [
@@ -111,4 +124,4 @@ let users = [
     }
 ];
 
-export {users, friends, Me, Misha, Zeka, Anya, getUserByLogin};
+export {users, friends, Me, Misha, Zeka, Anya, getUserByLogin, getUserByID};
