@@ -31,6 +31,7 @@
 }
 
 .active{
+    cursor: pointer;
     background-color: rgba(44, 55, 115, 1);
     height: 100%;
     width: 100%;

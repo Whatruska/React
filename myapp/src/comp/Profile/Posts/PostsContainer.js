@@ -4,6 +4,19 @@ import {addPostActionCreator} from "../../../reducers/postReducer";
 import {getUserByLogin} from "../../../data/users";
 import React from "react";
 import Post from "../Post/Post";
+import classes from "./Posts.module.css";
+import {Field, reduxForm} from "redux-form";
+
+let PostsForm = (props) => {
+    return(
+        <form className={classes.form} onSubmit={props.handleSubmit}>
+            <Field component={"textarea"} name={"post"} className={classes.textarea}></Field>
+            <button className={classes.button}>Submit</button>
+        </form>
+    );
+}
+
+let PostsFormRedux = reduxForm({form : "postsForm"})(PostsForm)
 
 class PostContainer extends React.Component{
     renderPosts = () => this.props.posts.map((post) => {
@@ -19,11 +32,16 @@ class PostContainer extends React.Component{
     render() {
         if (this.props.login === "Whatruska"){
             return(
-                <Posts renderedPosts={this.renderPosts()} addPost={this.addPost}/>
+                <>
+                    <PostsFormRedux onSubmit={this.addPost}/>
+                    <Posts renderedPosts={this.renderPosts()} addPost={this.addPost}/>
+                </>
             );
         } else {
             return (
-                <></>
+                <>
+                    <Posts renderedPosts={this.renderPosts()} addPost={this.addPost}/>
+                </>
             );
         }
     }
