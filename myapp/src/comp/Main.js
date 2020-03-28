@@ -11,7 +11,9 @@ import {connect} from "react-redux";
 import Greetings from "./Greetings/Greeting";
 
 class Main extends React.Component{
-    myProfile = <Route path={"/Profile"} exact render={() => <Profile state={this.props.userPages[0]}/>}/>;
+    myProfile = <Route path={"/Profile"} exact render={() => {
+        return(<Profile state={this.props.userPages[0]}/>);
+    }}/>;
 
     renderedFriends = this.props.userPages.map((user) => {
         if (user.login !== "Whatruska"){

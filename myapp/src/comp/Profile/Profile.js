@@ -19,7 +19,7 @@ const Profile = (props) => {
             <img src={state.header} className={classes.header} alt="Profile header"/>
             <Info userInfo={userInfo} avatar={state.avatar}/>
             <StatusContainer id={id}/>
-            {state.posts ? <PostsContainer login={state.login}/> : <></>}
+            {state.posts ? <PostsContainer posts={state.posts} login={state.login}/> : <></>}
         </div>
     );
 }

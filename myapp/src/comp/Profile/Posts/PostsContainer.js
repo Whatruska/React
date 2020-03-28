@@ -31,7 +31,7 @@ class PostContainer extends React.Component{
 
 let mapStateToProps = (state) => {
     return({
-
+        arr : []
     });
 };
 
@@ -47,7 +47,7 @@ let mergeProps = (stateProps, dispatchProps, props) => {
     return({
         login : login,
         add : dispatchProps.add,
-        posts : user.posts,
+        posts : props.posts,
         avatar : user.avatar
     });
 };
