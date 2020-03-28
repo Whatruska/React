@@ -28,10 +28,10 @@
     text-decoration: none;
     color: white;
     padding: 10px 0px;
+    cursor: pointer;
 }
 
 .active{
-    cursor: pointer;
     background-color: rgba(44, 55, 115, 1);
     height: 100%;
     width: 100%;

@@ -6,11 +6,15 @@ import React from "react";
 import Post from "../Post/Post";
 import classes from "./Posts.module.css";
 import {Field, reduxForm} from "redux-form";
+import {TextArea} from "../../Validated/TextArea/TextArea";
+import {minLength} from "../../../utils/validators/minLength";
+
+let lengthValidator = minLength(1);
 
 let PostsForm = (props) => {
     return(
         <form className={classes.form} onSubmit={props.handleSubmit}>
-            <Field component={"textarea"} name={"post"} className={classes.textarea}></Field>
+            <Field component={TextArea} name={"post"} className={classes.textarea} validate={[lengthValidator]}></Field>
             <button className={classes.button}>Submit</button>
         </form>
     );
