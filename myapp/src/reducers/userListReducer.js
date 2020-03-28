@@ -51,7 +51,6 @@ let userListReducer = (state = initialState, action) => {
         }
 
         case SET_PAGE_COUNT : {
-            debugger;
             stateCopy.pageCount = action.count;
             break;
         }
@@ -119,12 +118,14 @@ let refreshThunkCreator = (mode, pageCount, pageSize) => (dispatch) => {
     if (mode){
         switch (mode) {
             case INC : {
-                dispatch(setPageCountActionCreator(pageCount++));
+                dispatch(setPageCountActionCreator(++pageCount));
                 break;
             }
 
             case DEC : {
-                dispatch(setPageCountActionCreator(pageCount--));
+                if (pageCount > 1){
+                    dispatch(setPageCountActionCreator(--pageCount));
+                }
                 break;
             }
             default : {

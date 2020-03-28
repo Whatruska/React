@@ -57,8 +57,8 @@ class UserListAPIComponent extends React.Component{
                 <UserList
                     renderedUsers={renderedUsers}
                     refresh={this.refresh}
-                    inc={this.inc}
-                    dec={this.dec}
+                    inc={this.props.inc}
+                    dec={this.props.dec}
                     pageCount={this.props.pageCount}
                     isFetching={this.props.isFetching}
                 />
