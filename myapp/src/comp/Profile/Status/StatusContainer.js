@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {connect} from "react-redux";
 import {statusThunkCreator} from "../../../reducers/profileReducer";
 import {getUserByID} from "../../../data/users";
@@ -16,17 +16,17 @@ const StatusContainer = (props) => {
         setEditMode(false);
     };
 
-    let componentDidMount = () => {
-        this.props.getStatus(this.props.id);
-    }
+    useEffect(() => {
+        props.getStatus(props.id);
+    },[]);
 
     let updateStatus = (status) => {
-        getUserByID(this.props.id).status = status;
+        getUserByID(props.id).status = status;
     }
 
-    let status = this.props.status;
-    if (this.props.id < 5){
-        status = getUserByID(this.props.id).status;
+    let status = props.status;
+    if (props.id < 5){
+        status = getUserByID(props.id).status;
     }
     return(<Status editMode={editMode} status={status} id={props.id} activateEdit={activateEdit} deactivateEdit={deactivateEdit} updateStatus={updateStatus}/>);
 }

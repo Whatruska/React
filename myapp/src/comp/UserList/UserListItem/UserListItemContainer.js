@@ -7,10 +7,8 @@ import {
 import UserListItem from "./UserListItem";
 import {isFetching} from "../../../selectors/userListSelector";
 
-class UserListItemContainer extends React.Component{
-    render() {
-        return(<UserListItem user={this.props.user} follow={this.props.follow} unfollow={this.props.unfollow}/>);
-    }
+const UserListItemContainer = (props) => {
+    return(<UserListItem user={props.user} follow={props.follow} unfollow={props.unfollow}/>);
 }
 
 let mapStateToProps = (state) => {

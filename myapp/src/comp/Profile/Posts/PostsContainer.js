@@ -22,32 +22,30 @@ let PostsForm = (props) => {
 
 let PostsFormRedux = reduxForm({form : "postsForm"})(PostsForm)
 
-class PostContainer extends React.Component{
-    renderPosts = () => this.props.posts.map((post) => {
+const PostContainer = (props) => {
+    let renderPosts = () => props.posts.map((post) => {
         return (
-            <Post text={post.text} likes={post.likes} ava={this.props.avatar}/>
+            <Post text={post.text} likes={post.likes} ava={props.avatar}/>
         );
     });
 
-    addPost = (data) => {
-        this.props.add(data.post);
+    let addPost = (data) => {
+        props.add(data.post);
     };
 
-    render() {
-        if (this.props.login === "Whatruska"){
-            return(
-                <>
-                    <PostsFormRedux onSubmit={this.addPost}/>
-                    <Posts renderedPosts={this.renderPosts()} addPost={this.addPost}/>
-                </>
-            );
-        } else {
-            return (
-                <>
-                    <Posts renderedPosts={this.renderPosts()} addPost={this.addPost}/>
-                </>
-            );
-        }
+    if (props.login === "Whatruska"){
+        return(
+            <>
+                <PostsFormRedux onSubmit={addPost}/>
+                <Posts renderedPosts={renderPosts()} addPost={addPost}/>
+            </>
+        );
+    } else {
+        return (
+            <>
+                <Posts renderedPosts={renderPosts()} addPost={addPost}/>
+            </>
+        );
     }
 }
 

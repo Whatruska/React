@@ -130,10 +130,10 @@ let logoutThunkCreator = () => {
     }
 };
 
-let loginThunkCreator = (email, pass) => {
+let loginThunkCreator = (email, pass, remember) => {
     return (dispatch) => {
         dispatch(toggleFetchActionCreator());
-        authAPI.getLoginRequest(email,pass).then((data) => {
+        authAPI.getLoginRequest(email,pass, remember).then((data) => {
             if (data.resultCode === 0){
                 dispatch(setEmailActionCreator(email));
                 dispatch(setUserIdActionCreator(data.data.userId));

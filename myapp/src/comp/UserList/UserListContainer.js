@@ -1,6 +1,6 @@
 import {connect} from "react-redux";
 import {INC, DEC, refreshThunkCreator} from "../../reducers/userListReducer";
-import React from "react";
+import React, {useEffect} from "react";
 import classes from "./List/UserList.module.css";
 import UserList from "./List/UserList";
 import UserListItemContainer from "./UserListItem/UserListItemContainer";
@@ -8,17 +8,16 @@ import {Redirect} from "react-router";
 import {isLogged} from "../../selectors/loginSelector";
 import {getPageCount, getPageSize, getUsers, isFetching} from "../../selectors/userListSelector";
 
-class UserListAPIComponent extends React.Component{
-
-    componentDidMount() {
-        this.refresh()
-    }
-
-    refresh = (mode) => {
-        this.props.refresh(mode, this.props.pageCount, this.props.pageSize);
+const UserListAPIComponent = (props) => {
+    let refresh = (mode) => {
+        props.refresh(mode, props.pageCount, props.pageSize);
     };
 
-    divideItemsToColumns = (listItems) => {
+    useEffect(() => {
+        refresh();
+    },[]);
+
+    let divideItemsToColumns = (listItems) => {
         let result = [];
         let m = [];
         while (listItems.length > 0){
@@ -43,33 +42,31 @@ class UserListAPIComponent extends React.Component{
         return result;
     };
 
-    getRenderedUserItems = (userItems) => {
+    let getRenderedUserItems = (userItems) => {
         if (userItems){
             let listItems =  userItems.map((item) => {
                 return <UserListItemContainer user={item}/>
             });
-            return this.divideItemsToColumns(listItems);
+            return divideItemsToColumns(listItems);
         }
     };
 
-    render() {
-        let renderedUsers = this.getRenderedUserItems(this.props.users);
-        if (this.props.isLogged){
-            return(
-                <UserList
-                    renderedUsers={renderedUsers}
-                    refresh={this.refresh}
-                    inc={this.props.inc}
-                    dec={this.props.dec}
-                    pageCount={this.props.pageCount}
-                    isFetching={this.props.isFetching}
-                />
-            );
-        } else {
-            return (
-                <Redirect to={"/"}/>
-            );
-        }
+    let renderedUsers = getRenderedUserItems(props.users);
+    if (props.isLogged){
+        return(
+            <UserList
+                renderedUsers={renderedUsers}
+                refresh={refresh}
+                inc={props.inc}
+                dec={props.dec}
+                pageCount={props.pageCount}
+                isFetching={props.isFetching}
+            />
+        );
+    } else {
+        return (
+            <Redirect to={"/"}/>
+        );
     }
 }
 

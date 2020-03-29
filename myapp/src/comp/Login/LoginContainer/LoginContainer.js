@@ -6,30 +6,15 @@ import Preloader from "../../Preloader/Preloader";
 import classes from "./LoginContainer.module.css";
 import {getErrorMessage, isFetching, isLogged} from "../../../selectors/loginSelector";
 
-class LoginContainer extends React.Component{
-    login = (data) => {
+const LoginContainer = (props) => {
+    let login = (data) => {
         let email = data.email;
         let password = data.password;
-        this.props.login(email, password);
+        let remember = data.remember;
+        props.login(email, password, remember);
     }
 
-    render() {
-        let message = this.renderedMessages(this.props.errorMessage);
-        if (!this.props.isLogged){
-            if (this.props.isFetching){
-                return(
-                    <div className={classes.preloader_wrapper}>
-                        <Preloader/>
-                    </div>
-                    );
-            } else {
-                return <Login login={this.login} errorMessage={message}/>
-            }
-        }
-        return <></>
-    }
-
-    renderedMessages = (messages) => {
+    let renderedMessages = (messages) => {
         if (messages){
             return messages.map((item) => {
                 return(
@@ -38,6 +23,20 @@ class LoginContainer extends React.Component{
             });
         }
     };
+
+    let message = renderedMessages(props.errorMessage);
+    if (!props.isLogged){
+        if (props.isFetching){
+            return(
+                <div className={classes.preloader_wrapper}>
+                    <Preloader/>
+                </div>
+                );
+        } else {
+            return <Login login={login} errorMessage={message}/>
+        }
+    }
+    return <></>;
 }
 
 let mapStateToProps = (state) => {
@@ -50,8 +49,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return({
-        login : (email, pass) => {
-            dispatch(loginThunkCreator(email, pass));
+        login : (email, pass, remember) => {
+            dispatch(loginThunkCreator(email, pass, remember));
         },
     });
 };

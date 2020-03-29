@@ -7,6 +7,7 @@ import profileReducer from "./reducers/profileReducer";
 import loginReducer from "./reducers/loginReducer";
 import thunk from "redux-thunk";
 import {reducer as formReducer} from "redux-form"
+import initialReducer from "./reducers/initialReducer";
 
 let reducers = combineReducers({
     messagesPage: messageReducer,
@@ -15,6 +16,7 @@ let reducers = combineReducers({
     userList: userListReducer,
     profilePage: profileReducer,
     loginData : loginReducer,
+    init : initialReducer,
     form : formReducer
 });
 

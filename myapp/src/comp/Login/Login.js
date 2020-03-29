@@ -13,6 +13,7 @@ let LoginForm = (props) => {
         <form className={classes.loginForm} onSubmit={props.handleSubmit}>
             <Field placeholder={"E-mail"} type={"e-mail"} name={"email"} className={classes.input} component={Input} validate={[required, email]}/>
             <Field placeholder={"Password"} type={"password"} name={"password"} className={classes.input} component={Input} validate={[required, minL]}/>
+            <Field component={"input"} type={"checkbox"} name={"remember"} className={classes.checkbox}/>
             <div>
                 {props.errorMessage}
             </div>

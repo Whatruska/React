@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
 import {refreshThunkCreator} from "../../reducers/profileReducer";
@@ -7,24 +7,22 @@ import Profile from "./Profile";
 import classes from "./ProfileContainer.module.css";
 import {getCurrentProfile, isFetching} from "../../selectors/profileSelector";
 
-class ProfileContainer extends React.Component{
+const ProfileContainer = (props) => {
 
-    refresh = () => {
-        this.props.refresh(this.props.match.params.userId, this.props.isFetching);
+    let refresh = () => {
+        props.refresh(props.match.params.userId, props.isFetching);
     };
 
-    componentDidMount() {
-        this.refresh();
-    }
+    useEffect(() => {
+        refresh();
+    },[]);
 
-    render() {
-        let isFetching = this.props.isFetching;
-        return(
-            <div className={classes.Container}>
-                {isFetching ? <Preloader/> : <Profile state={this.props.profile}/>}
-            </div>
-        );
-    }
+    let isFetching = props.isFetching;
+    return(
+        <div className={classes.Container}>
+            {isFetching ? <Preloader/> : <Profile state={props.profile}/>}
+        </div>
+    );
 }
 
 let mapStateToProps = (state) => {

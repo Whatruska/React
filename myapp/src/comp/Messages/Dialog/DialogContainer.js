@@ -3,21 +3,20 @@ import Dialog from "./Dialog";
 import {addMsgActionCreator} from "../../../reducers/messageReducer";
 import * as React from "react";
 import Message from "./Message/Message";
+import {getMessages} from "../../../selectors/messageSelector";
 
-class DialogContainer extends React.Component{
-    renderMessages = () => this.props.messages.map((message) => {
+const DialogContainer = (props) => {
+    let renderMessages = () => props.messages.map((message) => {
         return(
             <Message author={message.author} text={message.text}/>
         );
     });
 
-    addMessage = (data) =>{
-        this.props.add(data.message, this.props.id);
+    let addMessage = (data) =>{
+        props.add(data.message, props.id);
     }
 
-    render() {
-        return(<Dialog renderedMessages={this.renderMessages()} addMsg={this.addMessage}/>);
-    }
+    return(<Dialog renderedMessages={renderMessages()} addMsg={addMessage}/>);
 }
 
 let getMsgsByID = (messages, id) => {
@@ -31,7 +30,7 @@ let getMsgsByID = (messages, id) => {
 
 let mapStateToProps = (state) => {
     return({
-        messages : state.messagesPage.messages,
+        messages : getMessages(state),
     });
 };
 

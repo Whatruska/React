@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {connect} from "react-redux";
 import {
     authThunkCreator,
@@ -7,18 +7,11 @@ import {
 import Header from "../Header";
 import {getEmail, isLogged} from "../../../selectors/loginSelector";
 
-class HeaderContainer extends React.Component{
-
-    componentDidMount() {
-        this.props.auth();
-    }
-
-    render() {
-        if (this.props.isLogged){
-            return <Header email={this.props.email} logout={this.props.logout}/>
-        } else {
-            return <Header/>
-        }
+const HeaderContainer = (props) => {
+    if (props.isLogged){
+        return <Header email={props.email} logout={props.logout}/>
+    } else {
+        return <Header/>
     }
 }
 
@@ -31,9 +24,6 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return({
-        auth : () => {
-            dispatch(authThunkCreator());
-        },
         logout : () => {
             dispatch(logoutThunkCreator());
         }
