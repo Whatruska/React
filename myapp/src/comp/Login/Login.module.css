@@ -30,7 +30,16 @@
 }
 
 .checkbox{
+    outline: none !important;
+    border: 1px solid black;
+    -webkit-appearance: initial;
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+}
 
+.checkbox[value="true"]{
+    background-color: #313186;
 }
 
 .btn{
