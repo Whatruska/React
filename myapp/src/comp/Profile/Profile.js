@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Profile.module.css';
 import Info from './Info/Info';
 import PostsContainer from "./Posts/PostsContainer";
-import StatusContainer from "./Status/Status";
+import StatusContainer from "./Status/StatusContainer";
 
 const Profile = (props) => {
     let state = props.state;
