@@ -10,13 +10,12 @@ let Status = (props) => {
                 Status : {props.status}
             </div>
         );
-    } else if (props.id < 5) {
+    } else if (props.id === 1) {
         return (
             <input type={"text"} className={classes.input} ref={link} onBlur={() => {
                 props.updateStatus(link.current.value);
                 props.deactivateEdit();
-            }
-            }/>
+            }}/>
         );
     } else {
         return (

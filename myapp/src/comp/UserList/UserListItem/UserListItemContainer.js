@@ -5,6 +5,7 @@ import {
     followThunkCreator, unfollowThunkCreator
 } from "../../../reducers/userListReducer";
 import UserListItem from "./UserListItem";
+import {isFetching} from "../../../selectors/userListSelector";
 
 class UserListItemContainer extends React.Component{
     render() {
@@ -14,7 +15,7 @@ class UserListItemContainer extends React.Component{
 
 let mapStateToProps = (state) => {
     return ({
-        isFetching : state.userList.isFetching
+        isFetching : isFetching(state)
     });
 };
 

@@ -5,6 +5,8 @@ import classes from "./List/UserList.module.css";
 import UserList from "./List/UserList";
 import UserListItemContainer from "./UserListItem/UserListItemContainer";
 import {Redirect} from "react-router";
+import {isLogged} from "../../selectors/loginSelector";
+import {getPageCount, getPageSize, getUsers, isFetching} from "../../selectors/userListSelector";
 
 class UserListAPIComponent extends React.Component{
 
@@ -73,11 +75,11 @@ class UserListAPIComponent extends React.Component{
 
 let mapStateToProps = (state) => {
     return({
-        isLogged : state.loginData.isLogged,
-        users : state.userList.users,
-        pageSize : state.userList.pageSize,
-        pageCount : state.userList.pageCount,
-        isFetching : state.userList.isFetching,
+        isLogged : isLogged(state),
+        users : getUsers(state),
+        pageSize : getPageSize(state),
+        pageCount : getPageCount(state),
+        isFetching : isFetching(state),
         inc : INC,
         dec : DEC
     });

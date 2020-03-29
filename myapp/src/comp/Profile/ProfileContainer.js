@@ -5,6 +5,7 @@ import {refreshThunkCreator} from "../../reducers/profileReducer";
 import Preloader from "../Preloader/Preloader";
 import Profile from "./Profile";
 import classes from "./ProfileContainer.module.css";
+import {getCurrentProfile, isFetching} from "../../selectors/profileSelector";
 
 class ProfileContainer extends React.Component{
 
@@ -28,8 +29,8 @@ class ProfileContainer extends React.Component{
 
 let mapStateToProps = (state) => {
     return({
-        isFetching : state.profilePage.isFetching,
-        profile : state.profilePage.currentProfile
+        isFetching : isFetching(state),
+        profile : getCurrentProfile(state)
     });
 };
 

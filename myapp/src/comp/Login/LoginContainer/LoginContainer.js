@@ -4,6 +4,7 @@ import {loginThunkCreator} from "../../../reducers/loginReducer";
 import Login from "../Login";
 import Preloader from "../../Preloader/Preloader";
 import classes from "./LoginContainer.module.css";
+import {getErrorMessage, isFetching, isLogged} from "../../../selectors/loginSelector";
 
 class LoginContainer extends React.Component{
     login = (data) => {
@@ -41,9 +42,9 @@ class LoginContainer extends React.Component{
 
 let mapStateToProps = (state) => {
     return({
-        isLogged : state.loginData.isLogged,
-        isFetching : state.loginData.isFetching,
-        errorMessage : state.loginData.errorMessage
+        isLogged : isLogged(state),
+        isFetching : isFetching(state),
+        errorMessage : getErrorMessage(state)
     });
 };
 

@@ -1,46 +1,39 @@
-import React from "react";
+import React, {useState} from "react";
 import {connect} from "react-redux";
 import {statusThunkCreator} from "../../../reducers/profileReducer";
 import {getUserByID} from "../../../data/users";
 import Status from "./Status";
+import {getStatus} from "../../../selectors/profileSelector";
 
-class StatusContainer extends React.Component {
-    state = {
-        editMode : false
+const StatusContainer = (props) => {
+    let [editMode, setEditMode] = useState(false);
+
+    let activateEdit = () => {
+        setEditMode(true);
     };
 
-    activateEdit = () => {
-        this.setState({
-            editMode : true
-        });
+    let deactivateEdit = () => {
+        setEditMode(false);
     };
 
-    deactivateEdit = () => {
-        this.setState({
-            editMode : false
-        });
-    };
-
-    componentDidMount() {
+    let componentDidMount = () => {
         this.props.getStatus(this.props.id);
     }
 
-    updateStatus = (status) => {
+    let updateStatus = (status) => {
         getUserByID(this.props.id).status = status;
     }
 
-    render() {
-        let status = this.props.status;
-        if (this.props.id < 5){
-            status = getUserByID(this.props.id).status;
-        }
-        return(<Status editMode={this.state.editMode} status={status} id={this.props.id} activateEdit={this.activateEdit} deactivateEdit={this.deactivateEdit} updateStatus={this.updateStatus}/>);
+    let status = this.props.status;
+    if (this.props.id < 5){
+        status = getUserByID(this.props.id).status;
     }
+    return(<Status editMode={editMode} status={status} id={props.id} activateEdit={activateEdit} deactivateEdit={deactivateEdit} updateStatus={updateStatus}/>);
 }
 
 let mapStateToProps = (state) => {
     return({
-        status : state.profilePage.status
+        status : getStatus(state)
     });
 };
 

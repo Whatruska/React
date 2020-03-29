@@ -5,6 +5,7 @@ import {
     logoutThunkCreator,
 } from "../../../reducers/loginReducer";
 import Header from "../Header";
+import {getEmail, isLogged} from "../../../selectors/loginSelector";
 
 class HeaderContainer extends React.Component{
 
@@ -23,8 +24,8 @@ class HeaderContainer extends React.Component{
 
 let mapStateToProps = (state) => {
     return({
-        email : state.loginData.email,
-        isLogged : state.loginData.isLogged
+        email : getEmail(state),
+        isLogged : isLogged(state)
     });
 };
 
