@@ -60,3 +60,31 @@
     font-size: 32px;
     color: #313186;
 }
+
+@media (max-width: 900px) {
+    .UserListItem{
+        width: 15vw;
+        flex-direction: column-reverse;
+    }
+
+    .meta{
+        width: 5vw;
+    }
+
+    .info{
+        font-size: 1.5vw;
+    }
+
+    .login{
+        font-size: 3vw;
+    }
+
+    .avatar{
+        display: none;
+    }
+
+    .follow{
+        width: 15vw;
+        font-size: 2vw;
+    }
+}
