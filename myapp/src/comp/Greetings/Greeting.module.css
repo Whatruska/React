@@ -6,6 +6,11 @@
     align-items: center;
 }
 
+img{
+    height: 40vw;
+    width: 60vw;
+}
+
 .title{
     
 }

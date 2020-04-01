@@ -58,3 +58,22 @@
     background-color: #4242b6;
     cursor: pointer;
 }
+
+@media (max-width: 750px) {
+    .Login{
+        height: 100vh;
+        justify-content: flex-start;
+    }
+
+    .btn{
+        font-size: 5vw;
+    }
+
+    .heading{
+        font-size: 15vw;
+    }
+    .input{
+        font-size: 7vw;
+        width: 45vw;
+    }
+}

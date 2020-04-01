@@ -4,22 +4,32 @@
 }
 
 .avatar{
-    width: 50px;
-    height: 50px;
+    margin-bottom: 10px;
 }
 
 .img{
     border-radius: 50%;
-    width: 50px;
-    height: 50px;
+    width: 5vw;
+    height: 5vw;
 }
 
 .name{
     display: block;
     outline: none;
     color: white;
+    font-size: 24px;
 }
 
 .active{
 
+}
+
+@media (max-width: 500px) {
+    .img{
+        display: none;
+    }
+
+    .name{
+        font-size: 3vw;
+     }
 }

@@ -10,7 +10,7 @@ const LoginContainer = (props) => {
     let login = (data) => {
         let email = data.email;
         let password = data.password;
-        let remember = data.remember;
+        let remember = !!data.remember;
         props.login(email, password, remember);
     }
 

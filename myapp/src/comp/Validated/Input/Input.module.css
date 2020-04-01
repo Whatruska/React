@@ -6,15 +6,6 @@
     align-items: center;
 }
 
-.input{
-    outline: none;
-    font-size: 32px;
-    border: 0px black solid;
-    border-bottom-width: 1px;
-    margin: 20px 0px;
-    text-align: center;
-}
-
 .error{
     border: 1px solid red;
 }

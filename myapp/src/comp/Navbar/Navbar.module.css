@@ -3,7 +3,7 @@
     margin-left: 10px;
     color: white;
     font-size: 20px;
-    min-width: 10vw;
+    width: 20vw;
 }
 
 .list{
@@ -19,6 +19,7 @@
 
 .item:hover{
     background-color: rgba(44, 55, 115, 1);
+    padding: 3px 3px;
 }
 
 .link{
@@ -29,6 +30,7 @@
     color: white;
     padding: 10px 0px;
     cursor: pointer;
+    font-size: 24px;
 }
 
 .active{
@@ -36,4 +38,10 @@
     height: 100%;
     width: 100%;
     border-radius: 20px;
+}
+
+@media (max-width: 500px) {
+    .link{
+        font-size: 3vw;
+    }
 }
