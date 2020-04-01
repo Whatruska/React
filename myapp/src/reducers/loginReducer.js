@@ -51,9 +51,9 @@ let loginReducer = (state = initialState, action) => {
 
         case SET_USER_DATA : {
             let data = action.data;
-            stateCopy.isLogged = true;
             stateCopy.email = data.email;
-            stateCopy.userId = data.id;
+            stateCopy.userId = data.userId;
+            stateCopy.isLogged = true;
             break;
         }
 

@@ -2,7 +2,7 @@ const INIT_FINISHED = "INIT_FINISH"
 
 const initialState = {
     isInitialized : false
-}
+};
 
 const initialReducer = (state = initialState, action) => {
     let stateCopy = {...state};
