@@ -1,8 +1,10 @@
 .user{
-    margin: 10px 0px;
+    margin: 10px 3px;
+    width: 15vw;
 }
 
 .link{
+    font-size: 3vw;
     text-decoration: none;
     display: block;
     width: 100%;
@@ -10,7 +12,7 @@
     color: black;
     border-radius: 20px;
     transition: 0.3s linear all;
-    padding: 5px 5px;
+    padding: 0.5vw 0.5vw;
 }
 
 .active, .link:hover{
