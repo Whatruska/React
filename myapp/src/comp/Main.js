@@ -32,7 +32,7 @@ class Main extends React.Component{
         if (this.props.isInitialized){
             if (this.props.isLogged){
                 return(
-                    <BrowserRouter>
+                    <BrowserRouter basename={process.env.PUBLIC_URL}>
                         <div className='Main'>
                             <Navbar state={this.props.friendInfo}/>
                             <Route path="/Messages" render={() => <Messages state={this.props.messagesPage}/>}/>
