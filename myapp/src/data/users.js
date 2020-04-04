@@ -69,7 +69,7 @@ let Zeka = {
     header : profile_header,
     posts : getPostsByID(4),
     followed : true,
-    status : "Misha kozel"
+    status : "I love Siberia"
 };
 
 let Misha = {
@@ -83,7 +83,7 @@ let Misha = {
     header : profile_header,
     posts : getPostsByID(3),
     followed : false,
-    status : "За армейку и двор"
+    status : "Спорт - это жизнь"
 };
 
 let friends = [
@@ -118,10 +118,6 @@ let users = [
         id: 4,
         name : "Azat"
     },
-    {
-        id: 5,
-        name : "Arino"
-    }
 ];
 
 export {users, friends, Me, Misha, Zeka, Anya, getUserByLogin, getUserByID};

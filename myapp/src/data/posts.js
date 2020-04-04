@@ -33,7 +33,7 @@ let posts = [
                 likes : 24
             },
             {
-                text: "Army one love",
+                text: "Sport one love",
                 likes: -32
             }
         ]
@@ -46,7 +46,7 @@ let posts = [
                 likes : 36
             },
             {
-                text: "Misha kozel",
+                text: "Омск топ",
                 likes: 100000002
             }
         ]

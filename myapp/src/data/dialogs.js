@@ -66,23 +66,6 @@ let dialogs = [
                 author : "Me"
             }
         ]
-    },
-    {
-        userId : 5,
-        dialog : [
-            {
-                text : "Hi",
-                author : "Me"
-            },
-            {
-                text : "How are you?",
-                author : "Arino"
-            },
-            {
-                text : "I`m gonna hang out",
-                author : "Me"
-            }
-        ]
     }
 ];
 
