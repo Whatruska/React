@@ -1,31 +1,31 @@
 {
   "files": {
-    "main.css": "/React/static/css/main.77e36afa.chunk.css",
-    "main.js": "/React/static/js/main.33a8e64f.chunk.js",
-    "main.js.map": "/React/static/js/main.33a8e64f.chunk.js.map",
+    "main.css": "/React/static/css/main.41c52649.chunk.css",
+    "main.js": "/React/static/js/main.0c421fb6.chunk.js",
+    "main.js.map": "/React/static/js/main.0c421fb6.chunk.js.map",
     "runtime-main.js": "/React/static/js/runtime-main.b4e2a1fd.js",
     "runtime-main.js.map": "/React/static/js/runtime-main.b4e2a1fd.js.map",
-    "static/js/2.74ffb7a7.chunk.js": "/React/static/js/2.74ffb7a7.chunk.js",
-    "static/js/2.74ffb7a7.chunk.js.map": "/React/static/js/2.74ffb7a7.chunk.js.map",
+    "static/js/2.dcbd0213.chunk.js": "/React/static/js/2.dcbd0213.chunk.js",
+    "static/js/2.dcbd0213.chunk.js.map": "/React/static/js/2.dcbd0213.chunk.js.map",
     "index.html": "/React/index.html",
-    "precache-manifest.5beff92a48c74d76cd3a79198af88386.js": "/React/precache-manifest.5beff92a48c74d76cd3a79198af88386.js",
+    "precache-manifest.b89ee422da27a8073a17b32b0446eb62.js": "/React/precache-manifest.b89ee422da27a8073a17b32b0446eb62.js",
     "service-worker.js": "/React/service-worker.js",
-    "static/css/main.77e36afa.chunk.css.map": "/React/static/css/main.77e36afa.chunk.css.map",
-    "static/js/2.74ffb7a7.chunk.js.LICENSE.txt": "/React/static/js/2.74ffb7a7.chunk.js.LICENSE.txt",
+    "static/css/main.41c52649.chunk.css.map": "/React/static/css/main.41c52649.chunk.css.map",
+    "static/js/2.dcbd0213.chunk.js.LICENSE.txt": "/React/static/js/2.dcbd0213.chunk.js.LICENSE.txt",
     "static/media/Anya.jpg": "/React/static/media/Anya.9c5e0711.jpg",
     "static/media/Greetings.gif": "/React/static/media/Greetings.d301fdc8.gif",
     "static/media/Misha.jpg": "/React/static/media/Misha.7547549a.jpg",
     "static/media/Zeka.jpg": "/React/static/media/Zeka.a704a6ae.jpg",
     "static/media/ava.jpeg": "/React/static/media/ava.65808d6a.jpeg",
-    "static/media/logo.svg": "/React/static/media/logo.5d5d9eef.svg",
-    "static/media/preloader.svg": "/React/static/media/preloader.7a697984.svg",
+    "static/media/logo.svg": "/React/static/media/logo.ee7cd8ed.svg",
+    "static/media/preloader.svg": "/React/static/media/preloader.b1df8c1d.svg",
     "static/media/profile-header.jpeg": "/React/static/media/profile-header.d05892b6.jpeg",
     "static/media/user.png": "/React/static/media/user.0f16ef6a.png"
   },
   "entrypoints": [
     "static/js/runtime-main.b4e2a1fd.js",
-    "static/js/2.74ffb7a7.chunk.js",
-    "static/css/main.77e36afa.chunk.css",
-    "static/js/main.33a8e64f.chunk.js"
+    "static/js/2.dcbd0213.chunk.js",
+    "static/css/main.41c52649.chunk.css",
+    "static/js/main.0c421fb6.chunk.js"
   ]
 }
