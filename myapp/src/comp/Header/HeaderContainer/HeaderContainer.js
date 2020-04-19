@@ -9,7 +9,7 @@ import {getEmail, isLogged} from "../../../selectors/loginSelector";
 
 const HeaderContainer = (props) => {
     if (props.isLogged){
-        return <Header email={props.email} logout={props.logout}/>
+        return <Header isLogged={props.isLogged} email={props.email} logout={props.logout}/>
     } else {
         return <Header/>
     }

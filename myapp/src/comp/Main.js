@@ -32,19 +32,16 @@ class Main extends React.Component{
         if (this.props.isInitialized){
             if (this.props.isLogged){
                 return(
-                    <BrowserRouter basename={process.env.PUBLIC_URL}>
-                        <div className='Main'>
-                            <Navbar state={this.props.friendInfo}/>
-                            <Route path="/Messages" render={() => <Messages state={this.props.messagesPage}/>}/>
-                            <Route path="/UserListAPIComponent" render={() => <UserListContainer/>}/>
-                            {this.myProfile}
-                            {this.renderedFriends}
-                            <Route path="/User/:userId">
-                                <ProfileContainer/>
-                            </Route>
-                            <Route path="/" exact render={() => <Greetings/>}/>
-                        </div>
-                    </BrowserRouter>
+                    <div className='Main'>
+                        <Route path="/Messages" render={() => <Messages state={this.props.messagesPage}/>}/>
+                        <Route path="/UserListAPIComponent" render={() => <UserListContainer/>}/>
+                        {this.myProfile}
+                        {this.renderedFriends}
+                        <Route path="/User/:userId">
+                            <ProfileContainer/>
+                        </Route>
+                        <Route path="/" exact render={() => <Greetings/>}/>
+                    </div>
                 );
             } else {
                 return (
