@@ -8,7 +8,10 @@ let styles = makeStyles(theme => ({
 
     logo : {
         width: "7em",
-        height : "7em"
+        height : "7em",
+        [theme.breakpoints.down("xs")] : {
+            width: "3rem",
+        },
     },
 
     logo_btn : {
@@ -19,12 +22,23 @@ let styles = makeStyles(theme => ({
 
     heading : {
         fontSize: "2.5rem",
+        [theme.breakpoints.down("lg")] : {
+            fontSize: "1.5rem",
+        },
+        [theme.breakpoints.down("xs")] : {
+            fontSize: "1rem",
+        },
         color : "white",
         fontWeight : "bold"
     },
 
     tabs : {
-      marginLeft : "auto"
+        marginLeft : "auto",
+    },
+
+    tab : {
+        padding : "0px 0px",
+        fontSize : "1rem",
     },
 
     spacing : {
@@ -46,19 +60,32 @@ let styles = makeStyles(theme => ({
         backgroundColor : theme.palette.error.main,
         color : "white",
         fontWeight : "bold",
+        [theme.breakpoints.down("xs")] : {
+            fontSize: "0.7rem",
+        },
         "&:hover" : {
             backgroundColor : theme.palette.error.light
         }
     },
 
     logout_wrapper : {
+        marginLeft : "auto",
         display : "flex",
         flexDirection : "column",
-        justifyContent : "center"
+        justifyContent : "center",
+        fontSize : "0.7em",
+        [theme.breakpoints.down("lg")] : {
+            marginLeft : "0px"
+        }
     },
 
     email : {
         marginBottom : "0.5em"
+    },
+
+    drawer_btn : {
+        marginLeft : "auto",
+        color : "white"
     }
 }));
 

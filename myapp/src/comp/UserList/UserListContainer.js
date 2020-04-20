@@ -14,7 +14,7 @@ const UserListAPIComponent = (props) => {
     };
 
     useEffect(() => {
-        refresh();
+        refresh()
     },[]);
 
     let divideItemsToColumns = (listItems) => {

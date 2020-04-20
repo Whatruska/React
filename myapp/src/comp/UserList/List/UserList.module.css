@@ -4,7 +4,7 @@
     justify-content: space-around;
     align-items: center;
     margin: 10px 30px;
-    overflow: scroll;
+    overflow: hidden;
     width: 100%;
 }
 

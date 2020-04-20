@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/React/static/css/main.bb244db1.chunk.css",
+    "main.js": "/React/static/js/main.9c0a6b49.chunk.js",
+    "main.js.map": "/React/static/js/main.9c0a6b49.chunk.js.map",
+    "runtime-main.js": "/React/static/js/runtime-main.b4e2a1fd.js",
+    "runtime-main.js.map": "/React/static/js/runtime-main.b4e2a1fd.js.map",
+    "static/js/2.cb0d0374.chunk.js": "/React/static/js/2.cb0d0374.chunk.js",
+    "static/js/2.cb0d0374.chunk.js.map": "/React/static/js/2.cb0d0374.chunk.js.map",
+    "index.html": "/React/index.html",
+    "precache-manifest.3e3b64f54c159390569f30c8e85a1da5.js": "/React/precache-manifest.3e3b64f54c159390569f30c8e85a1da5.js",
+    "service-worker.js": "/React/service-worker.js",
+    "static/css/main.bb244db1.chunk.css.map": "/React/static/css/main.bb244db1.chunk.css.map",
+    "static/js/2.cb0d0374.chunk.js.LICENSE.txt": "/React/static/js/2.cb0d0374.chunk.js.LICENSE.txt",
+    "static/media/Anya.jpg": "/React/static/media/Anya.9c5e0711.jpg",
+    "static/media/Greetings.gif": "/React/static/media/Greetings.d301fdc8.gif",
+    "static/media/Misha.jpg": "/React/static/media/Misha.7547549a.jpg",
+    "static/media/Zeka.jpg": "/React/static/media/Zeka.a704a6ae.jpg",
+    "static/media/ava.jpeg": "/React/static/media/ava.65808d6a.jpeg",
+    "static/media/logo.svg": "/React/static/media/logo.ee7cd8ed.svg",
+    "static/media/preloader.svg": "/React/static/media/preloader.b1df8c1d.svg",
+    "static/media/profile-header.jpeg": "/React/static/media/profile-header.d05892b6.jpeg",
+    "static/media/user.png": "/React/static/media/user.0f16ef6a.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b4e2a1fd.js",
+    "static/js/2.cb0d0374.chunk.js",
+    "static/css/main.bb244db1.chunk.css",
+    "static/js/main.9c0a6b49.chunk.js"
+  ]
+}

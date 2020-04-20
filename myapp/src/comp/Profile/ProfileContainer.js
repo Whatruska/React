@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useCallback, useEffect} from "react";
 import {connect} from "react-redux";
 import {withRouter} from "react-router";
 import {refreshThunkCreator} from "../../reducers/profileReducer";

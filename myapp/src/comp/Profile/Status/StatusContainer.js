@@ -16,8 +16,12 @@ const StatusContainer = (props) => {
         setEditMode(false);
     };
 
-    useEffect(() => {
+    let refresh = () => {
         props.getStatus(props.id);
+    }
+
+    useEffect(() => {
+        refresh();
     },[]);
 
     let updateStatus = (status) => {

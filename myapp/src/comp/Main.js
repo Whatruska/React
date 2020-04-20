@@ -1,7 +1,6 @@
 import React from 'react';
 import './Main.css';
 import {BrowserRouter, Redirect, Route} from "react-router-dom";
-import Navbar from './Navbar/Navbar';
 import Messages from "./Messages/Messages";
 import Profile from "./Profile/Profile";
 import UserListContainer from "./UserList/UserListContainer";

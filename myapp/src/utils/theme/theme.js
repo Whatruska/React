@@ -10,6 +10,18 @@ let theme = createMuiTheme({
             main : "#ff5f57",
             light : "#ff938c"
         }
+    },
+
+    overrides : {
+        MuiTab : {
+            width : "5em",
+            root : {
+                width : "5em"
+            },
+            wrapper : {
+                width : "fit-content"
+            }
+        }
     }
 });
 
