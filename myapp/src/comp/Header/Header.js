@@ -99,6 +99,33 @@ const Header = (props) => {
 
     let matches = useMediaQuery(theme.breakpoints.up("lg"));
 
+    let getLinkObj = (l, pr, sec, i) => {
+        return {
+            link : l,
+            primary : pr,
+            secondary : sec,
+            icon : i
+        };
+    }
+
+    let links = [
+        getLinkObj("/", "Home", "Home, sweet home", <HomeIcon/>),
+        getLinkObj("/profile", "Profile", "Check your profile and edit status", <AccountBoxIcon/>),
+        getLinkObj("/messages", "Messages", "Check your messages", <ChatIcon/>),
+        getLinkObj("/UserListAPIComponent", "Users", "List of users", <ListIcon/>)
+    ];
+
+    let renderedDrawerOptions = links.map((option, index) => {
+        return (
+            <ListItem button onClick={toggleDrawer} component={Link} to={option["link"]}>
+                <ListItemIcon>
+                    {option["icon"]}
+                </ListItemIcon>
+                <ListItemText primary={option["primary"]} secondary={option["secondary"]}/>
+            </ListItem>
+        );
+    });
+
     return (
         <>
             <AppBar {...props} className={classes.Header}>
@@ -152,30 +179,7 @@ const Header = (props) => {
                                                 <CancelIcon/>
                                             </IconButton>
                                         </ListItem>
-                                        <ListItem button onClick={toggleDrawer} component={Link} to={"/"}>
-                                            <ListItemIcon>
-                                                <HomeIcon/>
-                                            </ListItemIcon>
-                                            <ListItemText primary={"Home"} secondary={"Home, sweet home"}/>
-                                        </ListItem>
-                                        <ListItem button onClick={toggleDrawer} component={Link} to={"/profile"}>
-                                            <ListItemIcon>
-                                                <AccountBoxIcon/>
-                                            </ListItemIcon>
-                                            <ListItemText primary={"Profile"} secondary={"Check your profile and edit status"}/>
-                                        </ListItem>
-                                        <ListItem button onClick={toggleDrawer} component={Link} to={"/messages"}>
-                                            <ListItemIcon>
-                                                <ChatIcon/>
-                                            </ListItemIcon>
-                                            <ListItemText primary={"Messages"} secondary={"Check your messages"}/>
-                                        </ListItem>
-                                        <ListItem button onClick={toggleDrawer} component={Link} to={"/UserListAPIComponent"}>
-                                            <ListItemIcon>
-                                                <ListIcon/>
-                                            </ListItemIcon>
-                                            <ListItemText primary={"Users"} secondary={"List of users"}/>
-                                        </ListItem>
+                                        {renderedDrawerOptions}
                                         <ListItem button onClick={(e) => {setOpenFriendList(!openFriend)}}>
                                             <ListItemIcon>
                                                 <PeopleIcon/>
