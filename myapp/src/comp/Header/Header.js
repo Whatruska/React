@@ -12,6 +12,22 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 
 import MenuIcon from '@material-ui/icons/Menu';
+import IconButton from "@material-ui/core/IconButton";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemIcon from "@material-ui/core/ListItemIcon";
+
+import CancelIcon from '@material-ui/icons/Cancel';
+import HomeIcon from '@material-ui/icons/Home';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import ChatIcon from '@material-ui/icons/Chat';
+import PeopleIcon from '@material-ui/icons/People';
+import ListIcon from '@material-ui/icons/List';
+
+import {ExpandLess, ExpandMore, StarBorder} from "@material-ui/icons";
+
+import Collapse from "@material-ui/core/Collapse";
 
 const Header = (props) => {
     let theme = useTheme();
@@ -20,6 +36,8 @@ const Header = (props) => {
     let [anchor, setAnchor] = useState(null);
     let [openMenu, setOpenMenu] = useState(false);
     let [openDrawer, setOpenDrawer] = useState(false);
+    let [openFriend, setOpenFriendList] = useState(false);
+
 
     let [selectedTab, setSelectedTab] = useState(0);
     let [selectedMenu, setSelectedMenu] = useState(-1);
@@ -128,7 +146,66 @@ const Header = (props) => {
                                 </Menu>
                             </>: <>
                                 <SwipeableDrawer onClose={toggleDrawer} onOpen={toggleDrawer} open={openDrawer}>
-                                    Hello Darkness, my old friend
+                                    <List>
+                                        <ListItem>
+                                            <IconButton onClick={toggleDrawer} className={classes.drawer_close_btn}>
+                                                <CancelIcon/>
+                                            </IconButton>
+                                        </ListItem>
+                                        <ListItem button onClick={toggleDrawer} component={Link} to={"/"}>
+                                            <ListItemIcon>
+                                                <HomeIcon/>
+                                            </ListItemIcon>
+                                            <ListItemText primary={"Home"} secondary={"Home, sweet home"}/>
+                                        </ListItem>
+                                        <ListItem button onClick={toggleDrawer} component={Link} to={"/profile"}>
+                                            <ListItemIcon>
+                                                <AccountBoxIcon/>
+                                            </ListItemIcon>
+                                            <ListItemText primary={"Profile"} secondary={"Check your profile and edit status"}/>
+                                        </ListItem>
+                                        <ListItem button onClick={toggleDrawer} component={Link} to={"/messages"}>
+                                            <ListItemIcon>
+                                                <ChatIcon/>
+                                            </ListItemIcon>
+                                            <ListItemText primary={"Messages"} secondary={"Check your messages"}/>
+                                        </ListItem>
+                                        <ListItem button onClick={toggleDrawer} component={Link} to={"/UserListAPIComponent"}>
+                                            <ListItemIcon>
+                                                <ListIcon/>
+                                            </ListItemIcon>
+                                            <ListItemText primary={"Users"} secondary={"List of users"}/>
+                                        </ListItem>
+                                        <ListItem button onClick={(e) => {setOpenFriendList(!openFriend)}}>
+                                            <ListItemIcon>
+                                                <PeopleIcon/>
+                                            </ListItemIcon>
+                                            <ListItemText primary={"Friends"} secondary={"List of your friends"}/>
+                                            {openFriend ? <ExpandLess/> : <ExpandMore/>}
+                                        </ListItem>
+                                        <Collapse in={openFriend} timeout={500} unmountOnExit>
+                                            <List component="div" disablePadding>
+                                                <ListItem button component={Link} to={"/Friend/Misha"} onClick={toggleDrawer}>
+                                                    <ListItemIcon>
+                                                        <StarBorder />
+                                                    </ListItemIcon>
+                                                    <ListItemText primary="Misha"/>
+                                                </ListItem>
+                                                <ListItem button component={Link} to={"/Friend/Anya"} onClick={toggleDrawer}>
+                                                    <ListItemIcon>
+                                                        <StarBorder />
+                                                    </ListItemIcon>
+                                                    <ListItemText primary="Anna"/>
+                                                </ListItem>
+                                                <ListItem button component={Link} to={"/Friend/Zeka"} onClick={toggleDrawer}>
+                                                    <ListItemIcon>
+                                                        <StarBorder />
+                                                    </ListItemIcon>
+                                                    <ListItemText primary="Evgenii"/>
+                                                </ListItem>
+                                            </List>
+                                        </Collapse>
+                                    </List>
                                 </SwipeableDrawer>
                                 <Button onClick={toggleDrawer} className={classes.drawer_btn}>
                                     <MenuIcon />

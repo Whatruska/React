@@ -16,7 +16,6 @@ const Profile = (props) => {
     };
     return(
         <div className={classes.Profile}>
-            <img src={state.header} className={classes.header} alt="Profile header"/>
             <Info userInfo={userInfo} avatar={state.avatar}/>
             <StatusContainer id={id}/>
             {state.posts ? <PostsContainer posts={state.posts} login={state.login}/> : <></>}

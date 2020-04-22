@@ -80,13 +80,21 @@ let styles = makeStyles(theme => ({
     },
 
     email : {
+        fontSize : "1.2em",
         marginBottom : "0.5em"
     },
 
     drawer_btn : {
         marginLeft : "auto",
-        color : "white"
-    }
+        color : "white",
+        "&:hover":{
+            backgroundColor : "transparent"
+        }
+    },
+
+    drawer_close_btn : {
+        margin : "auto"
+    },
 }));
 
 export default styles;
