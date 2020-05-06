@@ -14,7 +14,7 @@ let initialState = {
     users : [
         Anya, Misha, Zeka
     ],
-    pageSize : 6,
+    pageSize : 5,
     pageCount : 1,
     isFetching : false
 };
